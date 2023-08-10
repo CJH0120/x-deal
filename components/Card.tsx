@@ -22,7 +22,7 @@ const CardItem = ({ productHref, productName, productPrice, productImage }: Card
                             src="/favicon/coupang.png"
                             width={20}
                         />
-                        <Chip variant="light" size="sm">쿠팡</Chip>
+                        <Chip variant="light" size="sm" >쿠팡</Chip>
                     </div>
 
                     <h4 className="font-bold text-large">{productName ?? ""}</h4>
