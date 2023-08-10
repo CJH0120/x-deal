@@ -17,7 +17,7 @@ const LayOut = ({ children }: LayOutProps) => {
         <>
             <Head>
             </Head>
-            <Navbar shouldHideOnScroll >
+            <Navbar shouldHideOnScroll className="border" >
                 <NavbarBrand>
                     <p className="font-bold text-inherit">엑스딜</p>
                 </NavbarBrand>
@@ -26,14 +26,14 @@ const LayOut = ({ children }: LayOutProps) => {
                 </NavbarContent>
                 <NavbarContent justify="end">
                     {navList.map(v =>
-                        <NavbarItem>
+                        <NavbarItem key={v.pageName}>
                             <Link href={v.link} color="foreground">{v.pageName}</Link>
                         </NavbarItem>
                     )}
 
                 </NavbarContent>
             </Navbar>
-            <div className="py-4">
+            <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", }}>
                 {children}
             </div>
         </>
