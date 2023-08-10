@@ -33,7 +33,7 @@ const LayOut = ({ children }: LayOutProps) => {
 
                 </NavbarContent>
             </Navbar>
-            <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", }}>
+            <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", margin: "0 auto" }}>
                 {children}
             </div>
         </>
