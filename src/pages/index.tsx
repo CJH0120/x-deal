@@ -89,7 +89,7 @@ const SiteGather = () => {
   const router = useRouter()
   return (
     <div className='' style={{ width: "100%", maxWidth: "1024px", }}>
-      <p className='mb-3 sm:mb-4 text-large' >당신의 쇼핑 경험을 한층 더 풍성하게 만들어보세요!</p>
+      <p className='mb-3 sm:mb-4 text-large' >클릭 한 번으로 저렴한 가격과 최고의 품질을 만나보세요!</p>
       <p className='mb-4 sm:mb-8 text-small' style={{ color: "#A1A1AA" }}>지금 바로 네모 모양을 클릭하시면 해당 웹사이트의 특별 할인 상품을 확인하실 수 있습니다. 지금 놓치지 마세요</p>
       <div className="gap-4 grid grid-cols-2 sm:grid-cols-4" >
         {list.map((item, index) => (

@@ -1,7 +1,7 @@
-import { Button, Navbar, NavbarBrand, NavbarContent, NavbarItem, Link } from "@nextui-org/react"
+import { Button, Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Image } from "@nextui-org/react"
 import Head from "next/head"
 import { useState } from "react"
-
+import Logo from "../icon/Logo"
 interface LayOutProps {
     children?: React.ReactNode
 }
@@ -19,7 +19,7 @@ const LayOut = ({ children }: LayOutProps) => {
             </Head>
             <Navbar shouldHideOnScroll className="border" >
                 <NavbarBrand>
-                    <p className="font-bold text-inherit">엑스딜</p>
+                    <Logo height={"100%"} />
                 </NavbarBrand>
                 <NavbarContent className="hidden sm:flex gap-4" justify="center">
 
