@@ -29,7 +29,7 @@ const SiteGather = () => {
     {
       title: "쿠팡",
       img: "/logo/coupang.png",
-      link: "https://bitl.bz/D7jHv6",
+      link: "https://link.coupang.com/a/6qRXH",
     },
     {
       title: "11번가",
