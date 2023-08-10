@@ -3,6 +3,7 @@ import Head from "next/head"
 import { useState } from "react"
 import Logo from "../icon/Logo"
 import Menu from "../icon/menu"
+import open from '../../public/open.png'
 interface LayOutProps {
     children?: React.ReactNode
 }
@@ -31,7 +32,8 @@ const LayOut = ({ children }: LayOutProps) => {
                 <meta name="language" content="한국어" />
                 <meta charSet="UTF-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <meta property="og:image" content="이미지 URL" />
+                <meta property="og:image" content="../../public/open.png" />
+                <meta name="naver-site-verification" content="831643bd3a4a9ef983886171be497fd96764c34b" />
                 <meta property="og:type" content="website" />
 
 
