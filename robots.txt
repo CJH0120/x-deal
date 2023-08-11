@@ -1,2 +1,9 @@
+# *
 User-agent: *
 Allow: /
+
+# Host
+Host: hhttps://www.xdeal.site/
+
+# Sitemaps
+Sitemap: hhttps://www.xdeal.site/sitemap.xml

@@ -4,9 +4,8 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev -p 8868",
-		"build": "next build && next-sitemap && next export",
-		"postbuild": "next-export-optimize-images",
-		"serve": "npx http-server out",
+		"build": "next build",
+		"postbuild": "next-sitemap --config next-sitemap.config.js",
 		"start": "next start",
 		"lint": "next lint"
 	},
