@@ -4,6 +4,7 @@ import { useState } from "react"
 import Logo from "../icon/Logo"
 import Menu from "../icon/menu"
 import open from '../../public/open.png'
+import { useRouter } from "next/router"
 interface LayOutProps {
     children?: React.ReactNode
 }
@@ -19,6 +20,7 @@ const LayOut = ({ children }: LayOutProps) => {
     const handleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
     }
+    const router = useRouter()
     return (
         <>
             <Head>
@@ -46,10 +48,8 @@ const LayOut = ({ children }: LayOutProps) => {
 
             </Head>
             <Navbar shouldHideOnScroll className="border-b-1" >
-                <NavbarBrand>
-                    <Link href="/" >
-                        <Logo className="text-large" />
-                    </Link>
+                <NavbarBrand onClick={() => { router.push('/') }}>
+                    <Logo className="text-large" />
                 </NavbarBrand>
                 <NavbarContent justify="end" className="hidden sm:flex">
                     {navList.map(v =>
