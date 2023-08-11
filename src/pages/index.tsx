@@ -32,52 +32,52 @@ const SiteGather = () => {
   const list: siteProps[] = [
     {
       title: "쿠팡",
-      img: "/logo/coupang.png",
+      img: "/logo/coupang.avif",
       link: "https://link.coupang.com/a/6qRXH",
       pageLink: "/coupang"
     },
     {
       title: "11번가",
-      img: "/logo/11.png",
+      img: "/logo/11.avif",
       link: "https://bitl.bz/UNlyEZ",
       pageLink: "/11st"
 
     },
     {
       title: "옥션",
-      img: "/logo/autcion.png",
+      img: "/logo/autcion.avif",
       link: "https://bitl.bz/HsHOw6",
       pageLink: "/auction"
     },
     {
       title: "지마켓",
-      img: "/logo/gMarket.png",
+      img: "/logo/gMarket.avif",
       link: "https://bitl.bz/XfmPia",
       pageLink: "/gmarket"
 
     },
     {
       title: "지에스몰",
-      img: "/logo/gsMall.jpeg",
+      img: "/logo/gsMall.avif",
       link: "https://bitl.bz/Wb8EmX",
       pageLink: "/gsmall"
 
     },
     {
       title: "위메프",
-      img: "/logo/we.jpeg",
+      img: "/logo/we.avif",
       link: "https://bitl.bz/f53jjo",
       pageLink: "/wemakeprice"
     },
     {
       title: "하이마트",
-      img: "/logo/hiMart.jpeg",
+      img: "/logo/hiMart.avif",
       link: "https://bitl.bz/cBSLxW",
       pageLink: "/himart"
     },
     {
       title: "롯데몰",
-      img: "/logo/lotte.jpeg",
+      img: "/logo/lotte.avif",
       link: "https://bitl.bz/GsWQR3",
       pageLink: "lotte"
     },
