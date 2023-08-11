@@ -122,7 +122,7 @@ const SiteGather = () => {
                 alt={item.title}
                 className='w-12 h-12 justify-center items-center'
               />
-              <Chip className='x truncate font-bold	' size='sm' variant="light" >{item.title} </Chip>
+              <Chip className='truncate font-bold	' size='sm' variant="light" >{item.title} </Chip>
             </div>
           </Link>
         ))}
