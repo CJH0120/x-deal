@@ -12,31 +12,27 @@ interface CardItemProps {
 const CardItem = ({ productHref, productName, productPrice, productImage }: CardItemProps) => {
 
     return (
-        <Link target="_blank" href={productHref}>
-            <Card className="py-4">
-                <CardHeader className="pb-0 pt-1 px-4 flex-col items-start">
-                    <div className='flex items-center mb-2 '>
-                        <Image
-                            alt="Card background"
-                            className="object-cover rounded-xl"
-                            src="/favicon/coupang.png"
-                            width={20}
-                        />
-                        <Chip variant="light" size="sm" >쿠팡</Chip>
-                    </div>
-
-                    <h4 className="font-bold text-large">{productName ?? ""}</h4>
+        <Link target="_blank" href={productHref} >
+            <Card isFooterBlurred className="w-full h-[300px] col-span-12 sm:col-span-5">
+                <CardHeader className="absolute z-10 top-1 flex-col items-start">
+                    <p className="text-tiny text-white/60 uppercase font-bold">New</p>
+                    <h4 className="text-black font-medium text-2xl">Acme camera</h4>
                 </CardHeader>
-                <CardBody className="overflow-visible py-0">
-                    <Image
-                        alt="Card background"
-                        className="object-cover rounded-xl"
-                        src="https://thumbnail9.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/2018/09/12/17/0/08e18b54-5026-4414-866c-310eb01cc5d4.jpg"
-                        width={230}
-                    />
-                    <Button color="primary" variant="solid">29,000원</Button>
-                </CardBody>
-
+                <Image
+                    removeWrapper
+                    alt="Card example background"
+                    className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
+                    src={productImage}
+                />
+                <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
+                    <div>
+                        <p className="text-black text-tiny">Available soon.</p>
+                        <p className="text-black text-tiny">Get notified.</p>
+                    </div>
+                    <Button className="text-tiny" color="primary" radius="full" size="sm">
+                        Notify Me
+                    </Button>
+                </CardFooter>
             </Card>
         </Link>
     )

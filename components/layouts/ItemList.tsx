@@ -1,7 +1,9 @@
 import { Chip } from "@nextui-org/react"
+import CardItem from "../Card"
 
 const ItemList = () => {
     const mallName: string[] = ["쿠팡", "11번가", "옥션", "지마켓"]
+    const img = "https://thumbnail9.coupangcdn.com/thumbnails/remote/292x292ex/image/retail/images/8408571224194430-fc223782-8ed2-4834-9048-45095b7b79b0.png"
     return (
         <section className="my-4 sm:my-10">
             <div className="w-full ">
@@ -15,9 +17,20 @@ const ItemList = () => {
             </div>
 
 
-            <div>
-                CONTENT
-            </div>
+            {/* <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
+            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' /> */}
+
         </section>
     )
 }
