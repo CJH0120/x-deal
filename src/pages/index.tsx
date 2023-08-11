@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import { Button } from '@nextui-org/button'
-import { Avatar, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react'
+import { Avatar, AvatarIcon, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react'
 import CardItem from '../../components/Card'
 import LayOut from '../../components/layouts/layout'
 import { useRouter } from 'next/router'
@@ -89,39 +89,39 @@ const SiteGather = () => {
       <p className='mb-4 sm:mb-8 text-small' style={{ color: "#A1A1AA" }}> 클릭하시면 해당 웹사이트의 특별 할인 상품을 확인하실 수 있습니다. 지금 놓치지 마세요</p>
       <div className="hidden gap-4 sm:grid grid-cols-2 sm:grid-cols-4" >
         {list.map((item, index) => (
-          <>
-            <Card shadow="sm" className='hidden sm:flex' key={index} isPressable onClick={() => { router.push(item.pageLink) }}  >
-              <CardBody className="overflow-visible p-0">
-                <Image
-                  shadow="sm"
-                  radius="lg"
-                  width={"100%"}
-                  alt={item.title}
-                  className="w-full object-cover h-[140px] "
-                  src={item.img}
-                />
-              </CardBody>
-              <CardFooter className="text-small justify-between">
-                <b>{item.title}</b>
-                <Link href={item.link} target="_blank">
-                  <Chip radius="sm" color="primary">방문하기</Chip>
-                </Link>
-              </CardFooter>
-            </Card>
-
-          </>
+          <Card shadow="sm" className='hidden sm:flex' key={item.title} isPressable onClick={() => { router.push(item.pageLink) }}  >
+            <CardBody className="overflow-visible p-0">
+              <Image
+                shadow="sm"
+                radius="lg"
+                width={"100%"}
+                alt={item.title}
+                className="w-full object-cover h-[140px] "
+                src={item.img}
+              />
+            </CardBody>
+            <CardFooter className="text-small justify-between">
+              <b>{item.title}</b>
+              <Link href={item.link} target="_blank">
+                <Chip radius="sm" color="primary">방문하기</Chip>
+              </Link>
+            </CardFooter>
+          </Card>
         ))}
 
 
 
       </div>
-      <div className='grid gap-4 grid-cols-4 sm:hidden py-4'>
+      <div className='grid gap-4 grid-cols-4  justify-center items-center sm:hidden my-8'>
         {list.map((item, index) => (
-          <Link href={item.pageLink} key={index}>
-            <div className='flex gap-3 flex-col justify-center items-center'>
-              <Avatar src={item.img}
+          <Link href={item.pageLink} key={item.img}>
+            <div className='flex gap-3 flex-col justify-center items-center m-auto' key={index}>
+              <Avatar
                 isBordered
-                className="w-12 h-12 " />
+                src={item.img}
+                alt={item.title}
+                className='w-15 justify-center items-center'
+              />
               <Chip className='x truncate font-bold	' size='sm' variant="light" >{item.title} </Chip>
             </div>
           </Link>
