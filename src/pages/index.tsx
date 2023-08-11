@@ -4,6 +4,7 @@ import { Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@next
 import CardItem from '../../components/Card'
 import LayOut from '../../components/layouts/layout'
 import { useRouter } from 'next/router'
+import ItemList from '../../components/layouts/ItemList'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,8 @@ export default function Home() {
         <CardItem productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
         <CardItem productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' /> */}
       </div>
-      asdasda
+      <ItemList />
+
     </LayOut>
   )
 }
@@ -89,8 +91,8 @@ const SiteGather = () => {
   const router = useRouter()
   return (
     <div className='' style={{ width: "100%", maxWidth: "1024px", }}>
-      <p className='mb-3 sm:mb-4 text-large sm:text-small' >클릭 한 번으로 저렴한 가격과 최고의 품질을 만나보세요!</p>
-      <p className='mb-4 sm:mb-8 text-small' style={{ color: "#A1A1AA" }}>지금 바로 네모 모양을 클릭하시면 해당 웹사이트의 특별 할인 상품을 확인하실 수 있습니다. 지금 놓치지 마세요</p>
+      <p className='mb-3 sm:mb-4 text-xl sm:text-2xl font-bold'>저렴한 가격과 최고의 품질을 만나보세요!</p>
+      <p className='mb-4 sm:mb-8 text-small' style={{ color: "#A1A1AA" }}> 클릭하시면 해당 웹사이트의 특별 할인 상품을 확인하실 수 있습니다. 지금 놓치지 마세요</p>
       <div className="gap-4 grid grid-cols-2 sm:grid-cols-4" >
         {list.map((item, index) => (
           <Card shadow="sm" key={index} isPressable onClick={() => { router.push(item.pageLink) }}  >
