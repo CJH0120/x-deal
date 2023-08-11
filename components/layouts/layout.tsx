@@ -38,7 +38,7 @@ const LayOut = ({ children }: LayOutProps) => {
                 <meta property="og:title" content="🔥 엑스딜(Xdeal) - 최저가 상품 추천으로 신나는 쇼핑 여정 시작하기! 🔥" />
                 <meta property="og:site_name" content="엑스딜(Xdeal)" />
                 <meta property="og:description" content="저렴한 가격의 제품을 추천하는 다른 쇼핑몰 비교 웹사이트입니다. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요. 최고의 거래를 확인하고 비용을 절약하세요!" />
-                <meta property="og:image" content="/favicon/open.png" />
+                <meta property="og:image" content="/favicon/og.png" />
 
             </Head>
             <Navbar shouldHideOnScroll className="border-b-1" >
