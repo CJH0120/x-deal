@@ -83,11 +83,18 @@ const Commerce = ({ meta }: CommerceProps) => {
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
     const { query } = context;
     const { commerce } = query;
-
     const meta = commerceData[commerce as keyof typeof commerceData];
+    if (["coupang", "auction", "11st", "gmarket", "gsmall", "himart", "lotte", "wemakeprice"].includes(commerce as string)) {
+        return {
+            props: {
+                meta,
+            },
+        };
+    }
     return {
-        props: {
-            meta,
+        redirect: {
+            permanent: false,
+            destination: "/",
         },
     };
 }
