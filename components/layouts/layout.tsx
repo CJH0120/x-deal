@@ -23,9 +23,10 @@ interface MetaData {
 interface LayOutProps {
     children?: React.ReactNode
     meta?: MetaData
+    loading?: boolean
 }
 
-const LayOut = ({ children, meta }: LayOutProps) => {
+const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
     const navList: NavProps[] = [{ link: "/", pageName: "공지사항" }, { link: "/", pageName: "자주하는 질문" }, { link: "/", pageName: "문의" }]
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
     console.log(meta)
@@ -49,40 +50,46 @@ const LayOut = ({ children, meta }: LayOutProps) => {
                 <meta property="og:image" content={meta?.ogImage ?? `/favicon/og.png`} />
 
             </Head>
-            <Navbar shouldHideOnScroll className="border-b-1" >
-                <NavbarBrand onClick={() => { router.push('/') }}>
-                    <Logo className="text-large" />
-                </NavbarBrand>
-                <NavbarContent justify="end" className="hidden sm:flex">
-                    {navList.map(v =>
-                        <NavbarItem key={v.pageName} >
-                            <Link href={v.link} color="foreground">{v.pageName}</Link>
-                        </NavbarItem>
-                    )}
-                </NavbarContent>
-                <NavbarContent justify="end" className="flex sm:hidden" >
-                    <NavbarMenuToggle
-                        className="sm:hidden"
-                    />
-                </NavbarContent>
-                <NavbarMenu>
-                    {navList.map((v, index) => (
-                        <NavbarMenuItem key={`${v}-${index}`}>
-                            <Link
-                                color={"foreground"}
-                                className="w-full"
-                                href={v.link}
-                                size="lg"
-                            >
-                                {v.pageName}
-                            </Link>
-                        </NavbarMenuItem>
-                    ))}
-                </NavbarMenu>
-            </Navbar>
-            <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", margin: "0 auto" }}>
-                {children}
-            </div>
+            {
+                loading && (
+                    <>
+                        <Navbar shouldHideOnScroll className="border-b-1" >
+                            <NavbarBrand onClick={() => { router.push('/') }}>
+                                <Logo className="text-large" />
+                            </NavbarBrand>
+                            <NavbarContent justify="end" className="hidden sm:flex">
+                                {navList.map(v =>
+                                    <NavbarItem key={v.pageName} >
+                                        <Link href={v.link} color="foreground">{v.pageName}</Link>
+                                    </NavbarItem>
+                                )}
+                            </NavbarContent>
+                            <NavbarContent justify="end" className="flex sm:hidden" >
+                                <NavbarMenuToggle
+                                    className="sm:hidden"
+                                />
+                            </NavbarContent>
+                            <NavbarMenu>
+                                {navList.map((v, index) => (
+                                    <NavbarMenuItem key={`${v}-${index}`}>
+                                        <Link
+                                            color={"foreground"}
+                                            className="w-full"
+                                            href={v.link}
+                                            size="lg"
+                                        >
+                                            {v.pageName}
+                                        </Link>
+                                    </NavbarMenuItem>
+                                ))}
+                            </NavbarMenu>
+                        </Navbar>
+                        <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", margin: "0 auto" }}>
+                            {children}
+                        </div>
+                    </>
+
+                )}
         </>
     )
 }

@@ -38,35 +38,26 @@ const Commerce = ({ meta }: CommerceProps) => {
 
     return (
         <>
-            <Head>
-                <meta property="og:title" content={`엑스딜 X ${meta.displayName}`} />
-                <meta property="og:description" content={`${meta.displayName} &&저렴한 가격의 제품을 추천하는 다른 쇼핑몰 비교 웹사이트입니다. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요. 최고의 거래를 확인하고 비용을 절약하세요!`} />
-                <meta property="og:image" content={`/favicon/og.png`} />
-
-            </Head>
-            {!loading && (
-
-                <LayOut meta={{ ogTitle: `엑스딜 X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>
-                    <Link target="_blank" href="https://link.coupang.com/a/6qRXH" className="w-full flex grow flex sm:hidden">
-                        <div className="flex justify-between items-center  w-full"  >
-                            <div className="flex  "  >
-                                <Image className="border  object-cover" width={56} src={logoPath as string} />
-                                <div className="flex flex-col ml-4 text-gray-800	 ">
-                                    <p>{commerce}</p>
-                                    <p>{displayName}</p>
-                                </div>
+            <LayOut loading={loading} meta={{ ogTitle: `엑스딜 X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>
+                <Link target="_blank" href="https://link.coupang.com/a/6qRXH" className="w-full flex grow flex sm:hidden">
+                    <div className="flex justify-between items-center  w-full"  >
+                        <div className="flex  "  >
+                            <Image className="border  object-cover" width={56} src={logoPath as string} />
+                            <div className="flex flex-col ml-4 text-gray-800	 ">
+                                <p>{commerce}</p>
+                                <p>{displayName}</p>
                             </div>
-                            <Button color="primary" size="md" >둘러보기</Button>
                         </div>
-                    </Link>
-
-
-                    <div className="mt-5">
-                        <p className="h[20px]">오늘 업데이트된 상품을 확인하세요</p>
-                        {commerce === "coupang" && <p className="text-gray-800	text-sm mt-5	">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                        <Button color="primary" size="md" >둘러보기</Button>
                     </div>
-                </LayOut >
-            )}
+                </Link>
+
+
+                <div className="mt-5">
+                    <p className="h[20px]">오늘 업데이트된 상품을 확인하세요</p>
+                    {commerce === "coupang" && <p className="text-gray-800	text-sm mt-5	">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                </div>
+            </LayOut >
         </>
     )
 }
