@@ -37,14 +37,15 @@ const Commerce = ({ meta }: CommerceProps) => {
 
 
     return (
-        !loading && (
-            <>
-                <Head>
-                    <meta property="og:title" content={`엑스딜 X ${meta.displayName}`} />
-                    <meta property="og:description" content={`${meta.displayName} &&저렴한 가격의 제품을 추천하는 다른 쇼핑몰 비교 웹사이트입니다. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요. 최고의 거래를 확인하고 비용을 절약하세요!`} />
-                    <meta property="og:image" content={`/favicon/og.png`} />
+        <>
+            <Head>
+                <meta property="og:title" content={`엑스딜 X ${meta.displayName}`} />
+                <meta property="og:description" content={`${meta.displayName} &&저렴한 가격의 제품을 추천하는 다른 쇼핑몰 비교 웹사이트입니다. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요. 최고의 거래를 확인하고 비용을 절약하세요!`} />
+                <meta property="og:image" content={`/favicon/og.png`} />
 
-                </Head>
+            </Head>
+            {!loading && (
+
                 <LayOut meta={{ ogTitle: `엑스딜 X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>
                     <Link target="_blank" href="https://link.coupang.com/a/6qRXH" className="w-full flex grow flex sm:hidden">
                         <div className="flex justify-between items-center  w-full"  >
@@ -65,11 +66,8 @@ const Commerce = ({ meta }: CommerceProps) => {
                         {commerce === "coupang" && <p className="text-gray-800	text-sm mt-5	">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
                     </div>
                 </LayOut >
-            </>
-        )
-
-
-
+            )}
+        </>
     )
 }
 
