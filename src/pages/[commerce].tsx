@@ -3,6 +3,9 @@ import LayOut from "../../components/layouts/layout";
 import { useEffect, useState } from "react";
 import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image, Link } from "@nextui-org/react";
 import ArrowRight from "../../components/icon/ArrowRight";
+import { NextPageContext } from "next";
+import { Props } from "next/script";
+import Head from "next/head";
 
 
 interface CommerceProps {
@@ -11,11 +14,11 @@ interface CommerceProps {
         logoPath: string;
     };
 }
-const Commerce: React.FC<CommerceProps> = ({ meta }: any) => {
+const Commerce = ({ meta }: CommerceProps) => {
     const router = useRouter();
     const { commerce } = router.query;
     const [loading, setLoading] = useState<boolean>(true)
-    const { displayName: commerceDisplayName, logoPath: commerceDisplayLogo } = meta;
+    const { displayName, logoPath } = meta;
 
 
 
@@ -47,10 +50,10 @@ const Commerce: React.FC<CommerceProps> = ({ meta }: any) => {
                 <Link target="_blank" href="https://link.coupang.com/a/6qRXH" className="w-full flex grow flex sm:hidden">
                     <div className="flex justify-between items-center  w-full"  >
                         <div className="flex  "  >
-                            <Image className="border  object-cover" width={56} src={commerceDisplayLogo as string} />
+                            <Image className="border  object-cover" width={56} src={logoPath as string} />
                             <div className="flex flex-col ml-4 text-gray-800	 ">
                                 <p>{commerce}</p>
-                                <p>{commerceDisplayName}</p>
+                                <p>{displayName}</p>
                             </div>
                         </div>
                         <Button color="primary" size="md" >둘러보기</Button>
@@ -77,29 +80,16 @@ const Commerce: React.FC<CommerceProps> = ({ meta }: any) => {
 
 
 
-interface ServerSidePropsContext {
-    query: {
-        commerce: string;
-    };
-}
 
-// Define type for the props returned by getServerSideProps
-interface ServerSideProps {
-    meta: {
-        displayName: string;
-        logoPath: string;
-    };
-}
-
-export async function getServerSideProps(context: ServerSidePropsContext): Promise<{ props: ServerSideProps }> {
-    const { commerce } = context.query;
+export const getServerSideProps = async function ({
+    req,
+    query,
+}: NextPageContext) {
+    const { commerce } = query;
 
 
 
-    const meta = commerceData[commerce as keyof typeof commerceData] || {
-        displayName: commerce,
-        logoPath: "/default-logo.webp",
-    };
+    const meta = commerceData[commerce as keyof typeof commerceData]
 
     return {
         props: {
@@ -121,7 +111,7 @@ interface CommerceData {
         logoPath: string;
     };
 }
-const commerceData = {
+const commerceData: CommerceData = {
     "coupang": {
         displayName: "쿠팡",
         logoPath: "/logo/coupang.webp",

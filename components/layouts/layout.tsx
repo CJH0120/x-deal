@@ -27,9 +27,7 @@ interface LayOutProps {
 const LayOut = ({ children, meta }: LayOutProps) => {
     const navList: NavProps[] = [{ link: "/", pageName: "공지사항" }, { link: "/", pageName: "자주하는 질문" }, { link: "/", pageName: "문의" }]
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-    const handleMenu = () => {
-        setIsMenuOpen(!isMenuOpen)
-    }
+    console.log(meta)
     const router = useRouter()
     return (
         <>
