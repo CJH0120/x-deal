@@ -3,46 +3,8 @@ import LayOut from "../../components/layouts/layout";
 import { useEffect, useState } from "react";
 import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image, Link } from "@nextui-org/react";
 import ArrowRight from "../../components/icon/ArrowRight";
-const commerceData = {
-    "coupang": {
-        displayName: "쿠팡",
-        logoPath: "/logo/coupang.webp",
-    },
-    "auction": {
-        displayName: "옥션",
-        logoPath: "/logo/autcion.webp",
-    },
-    "11st": {
-        displayName: "11번가",
-        logoPath: "/logo/11.webp",
-    },
-    "gmarket": {
-        displayName: "지마켓",
-        logoPath: "/logo/gMarket.webp",
-    },
-    "gsmall": {
-        displayName: "지스몰",
-        logoPath: "/logo/gsMall.webp",
-    },
-    "himart": {
-        displayName: "하이마트",
-        logoPath: "/logo/himart.webp",
-    },
-    "lotte": {
-        displayName: "롯데",
-        logoPath: "/logo/lotte.webp",
-    },
-    "wemakeprice": {
-        displayName: "위메프",
-        logoPath: "/logo/we.webp",
-    },
-};
-interface CommerceData {
-    [key: string]: {
-        displayName: string;
-        logoPath: string;
-    };
-}
+
+
 interface CommerceProps {
     meta: {
         displayName: string;
@@ -53,8 +15,18 @@ const Commerce: React.FC<CommerceProps> = ({ meta }: any) => {
     const router = useRouter();
     const { commerce } = router.query;
     const [loading, setLoading] = useState<boolean>(true)
-
     const { displayName: commerceDisplayName, logoPath: commerceDisplayLogo } = meta;
+
+
+
+
+
+
+
+
+
+
+
     useEffect(() => {
         if (!!meta) {
             setLoading(false)
@@ -105,9 +77,6 @@ const Commerce: React.FC<CommerceProps> = ({ meta }: any) => {
 
 
 
-
-
-
 interface ServerSidePropsContext {
     query: {
         commerce: string;
@@ -124,10 +93,14 @@ interface ServerSideProps {
 
 export async function getServerSideProps(context: ServerSidePropsContext): Promise<{ props: ServerSideProps }> {
     const { commerce } = context.query;
-    const meta: { displayName: string; logoPath: string } = {
+
+
+
+    const meta = commerceData[commerce as keyof typeof commerceData] || {
         displayName: commerce,
-        logoPath: commerce,
+        logoPath: "/default-logo.webp",
     };
+
     return {
         props: {
             meta,
@@ -142,3 +115,43 @@ export async function getServerSideProps(context: ServerSidePropsContext): Promi
 
 
 export default Commerce
+interface CommerceData {
+    [key: string]: {
+        displayName: string;
+        logoPath: string;
+    };
+}
+const commerceData = {
+    "coupang": {
+        displayName: "쿠팡",
+        logoPath: "/logo/coupang.webp",
+    },
+    "auction": {
+        displayName: "옥션",
+        logoPath: "/logo/autcion.webp",
+    },
+    "11st": {
+        displayName: "11번가",
+        logoPath: "/logo/11.webp",
+    },
+    "gmarket": {
+        displayName: "지마켓",
+        logoPath: "/logo/gMarket.webp",
+    },
+    "gsmall": {
+        displayName: "지스몰",
+        logoPath: "/logo/gsMall.webp",
+    },
+    "himart": {
+        displayName: "하이마트",
+        logoPath: "/logo/himart.webp",
+    },
+    "lotte": {
+        displayName: "롯데",
+        logoPath: "/logo/lotte.webp",
+    },
+    "wemakeprice": {
+        displayName: "위메프",
+        logoPath: "/logo/we.webp",
+    },
+};
