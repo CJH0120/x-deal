@@ -92,6 +92,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
             props: {
                 meta,
             },
+            revalidate: 60,
         };
     }
 
