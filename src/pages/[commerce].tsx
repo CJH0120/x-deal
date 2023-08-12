@@ -3,7 +3,7 @@ import LayOut from "../../components/layouts/layout";
 import { useEffect, useState } from "react";
 import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image, Link } from "@nextui-org/react";
 import ArrowRight from "../../components/icon/ArrowRight";
-import { GetServerSideProps, GetServerSidePropsContext, NextPageContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPageContext } from "next";
 import { Props } from "next/script";
 import Head from "next/head";
 import { ParsedUrlQuery } from "querystring";
@@ -71,26 +71,37 @@ const Commerce = ({ meta }: CommerceProps) => {
 
 
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
-    const { query } = context;
-    const { commerce } = query;
-    const meta = commerceData[commerce as keyof typeof commerceData];
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const commercePaths = ["coupang", "auction", "11st", "gmarket", "gsmall", "himart", "lotte", "wemakeprice"];
+
+    const paths = commercePaths.map(commerce => ({
+        params: { commerce },
+    }));
+
+    return { paths, fallback: false }; // fallback: false는 경로에 없는 경우 404 반환
+};
+
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+    const { params } = context;
+    const commerce = params?.commerce;
+
     if (["coupang", "auction", "11st", "gmarket", "gsmall", "himart", "lotte", "wemakeprice"].includes(commerce as string)) {
+        const meta = commerceData[commerce as keyof typeof commerceData];
         return {
             props: {
                 meta,
             },
         };
     }
+
     return {
         redirect: {
             permanent: false,
-            destination: "/",
+            destination: "/404",
         },
     };
 }
-
-
 
 
 export default Commerce
