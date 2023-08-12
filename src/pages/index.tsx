@@ -117,13 +117,12 @@ const SiteGather = () => {
         {list.map((item, index) => (
           <Link href={item.pageLink} key={item.img}>
             <div className='flex gap-3 flex-col justify-center items-center m-auto' key={index}>
-              <Avatar
-                isBordered
+              <Image
                 src={item.img}
                 alt={item.title}
-                className='w-12 h-12 justify-center items-center'
+                className='w-12 h-12 p-0 border border-slate-200 rounded-full justify-center items-center'
               />
-              <Chip className='truncate font-bold	' size='sm' variant="light" >{item.title} </Chip>
+              <span className='truncate 	'  >{item.title} </span>
             </div>
           </Link>
         ))}

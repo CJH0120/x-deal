@@ -1,10 +1,11 @@
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react"
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem } from "@nextui-org/react"
 import Head from "next/head"
 import { useState } from "react"
 import Logo from "../icon/Logo"
 import Menu from "../icon/menu"
 import open from '../../public/open.png'
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 
 interface NavProps {
@@ -29,7 +30,6 @@ interface LayOutProps {
 const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
     const navList: NavProps[] = [{ link: "/", pageName: "공지사항" }, { link: "/", pageName: "자주하는 질문" }, { link: "/", pageName: "문의" }]
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
-    console.log(meta)
     const router = useRouter()
     return (
         <>
@@ -55,7 +55,7 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
                     <>
                         <Navbar shouldHideOnScroll className="border-b-1" >
                             <NavbarBrand onClick={() => { router.push('/') }}>
-                                <Logo className="text-large" />
+                                <h1 className="text-large cursor-pointer"> <Logo /></h1>
                             </NavbarBrand>
                             <NavbarContent justify="end" className="hidden sm:flex">
                                 {navList.map(v =>
@@ -76,7 +76,6 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
                                             color={"foreground"}
                                             className="w-full"
                                             href={v.link}
-                                            size="lg"
                                         >
                                             {v.pageName}
                                         </Link>

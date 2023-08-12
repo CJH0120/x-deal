@@ -18,31 +18,16 @@ interface CommerceProps {
 const Commerce = ({ meta }: CommerceProps) => {
     const router = useRouter();
     const { commerce } = router.query;
-    const [loading, setLoading] = useState<boolean>(true)
     const { displayName, logoPath } = meta;
-
-
-    useEffect(() => {
-        if (!!meta) {
-            setLoading(false)
-            if (["coupang", "auction", "11st", "gmarket", "gsmall", "himart", "lotte", "wemakeprice"].includes(commerce as string)) {
-            } else {
-                router.push('/')
-            }
-
-        }
-    }, [meta])
-
-    console.log(meta)
 
 
     return (
         <>
-            <LayOut loading={loading} meta={{ ogTitle: `엑스딜 X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>
+            <LayOut meta={{ ogTitle: `X-DEAL X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>
                 <Link target="_blank" href="https://link.coupang.com/a/6qRXH" className="w-full flex grow flex sm:hidden">
                     <div className="flex justify-between items-center  w-full"  >
                         <div className="flex  "  >
-                            <Image className="border  object-cover" width={56} src={logoPath as string} />
+                            <Image className="border  object-cover" width={56} alt={`X-DEAL X ${meta.displayName}`} src={logoPath as string} />
                             <div className="flex flex-col ml-4 text-gray-800	 ">
                                 <p>{commerce}</p>
                                 <p>{displayName}</p>
@@ -136,7 +121,7 @@ const commerceData: CommerceData = {
     },
     "himart": {
         displayName: "하이마트",
-        logoPath: "/logo/himart.webp",
+        logoPath: "/logo/hiMart.webp",
     },
     "lotte": {
         displayName: "롯데",
