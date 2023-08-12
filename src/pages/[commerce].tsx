@@ -3,9 +3,10 @@ import LayOut from "../../components/layouts/layout";
 import { useEffect, useState } from "react";
 import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image, Link } from "@nextui-org/react";
 import ArrowRight from "../../components/icon/ArrowRight";
-import { NextPageContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, NextPageContext } from "next";
 import { Props } from "next/script";
 import Head from "next/head";
+import { ParsedUrlQuery } from "querystring";
 
 
 interface CommerceProps {
@@ -19,15 +20,6 @@ const Commerce = ({ meta }: CommerceProps) => {
     const { commerce } = router.query;
     const [loading, setLoading] = useState<boolean>(true)
     const { displayName, logoPath } = meta;
-
-
-
-
-
-
-
-
-
 
 
     useEffect(() => {
@@ -46,7 +38,7 @@ const Commerce = ({ meta }: CommerceProps) => {
 
     return (
         !loading && (
-            <LayOut meta={{ ogTitle: `엑스딜 X ${meta.displayName}` }}>
+            <LayOut meta={{ ogTitle: `엑스딜 X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>
                 <Link target="_blank" href="https://link.coupang.com/a/6qRXH" className="w-full flex grow flex sm:hidden">
                     <div className="flex justify-between items-center  w-full"  >
                         <div className="flex  "  >
@@ -81,25 +73,18 @@ const Commerce = ({ meta }: CommerceProps) => {
 
 
 
-export const getServerSideProps = async function ({
-    req,
-    query,
-}: NextPageContext) {
+
+export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext<ParsedUrlQuery>) => {
+    const { query } = context;
     const { commerce } = query;
 
-
-
-    const meta = commerceData[commerce as keyof typeof commerceData]
-
+    const meta = commerceData[commerce as keyof typeof commerceData];
     return {
         props: {
             meta,
         },
     };
 }
-
-
-
 
 
 

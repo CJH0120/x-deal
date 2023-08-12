@@ -13,6 +13,7 @@ interface NavProps {
 }
 
 interface MetaData {
+    title: string;
     description?: string;
     keywords?: string;
     ogTitle?: string;
@@ -32,7 +33,7 @@ const LayOut = ({ children, meta }: LayOutProps) => {
     return (
         <>
             <Head>
-                <title>X-DEAL :: 최저가 상품 추천</title>
+                <title>{meta?.title ?? `X-DEAL :: 최저가 상품 추천`}</title>
                 <meta name="description" content={meta?.description ?? `저렴한 가격의 제품을 추천하는 다른 쇼핑몰 비교 웹사이트입니다. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요. 최고의 거래를 확인하고 비용을 절약하세요!`} />
                 <meta name="keywords" content={meta?.keywords ?? `쇼핑몰 추천, 저렴한 상품, 가격 비교, 할인 상품, 비용 절약, 쇼핑 가이드`} />
                 <meta name="copyright" content="Copyright © 2023 by X-Deal" />
