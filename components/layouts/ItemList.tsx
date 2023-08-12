@@ -1,5 +1,6 @@
-import { Chip } from "@nextui-org/react"
+import { Chip, Image } from "@nextui-org/react"
 import CardItem from "../Card"
+import { CardList } from "../../dummy"
 
 const ItemList = () => {
     const mallName: string[] = ["쿠팡", "11번가", "옥션", "지마켓"]
@@ -7,30 +8,12 @@ const ItemList = () => {
     return (
         <section className="my-4 sm:my-10">
             <div className="w-full ">
-                <p className="text-xl sm:text-2xl font-bold">오늘 업데이트된 최신 가격을 만나보세요</p>
-                <div className="flex gap-2 my-4">
-                    {mallName.map((v, index) => (
-                        <Chip key={index} color="primary"  >{v}</Chip>
-                    ))}
-                </div>
-
+                <p className="text-base sm:text-2xl font-bold my-4 sm:my-10 ">해당 상품을 누르시면 구매 페이지로 이동합니다</p>
             </div>
-
-
-            {/* <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' />
-            <CardItem productImage={img} productPrice="99,999원" productName='낚시대' productHref='https://link.coupang.com/a/6pRcM' /> */}
-
+            <div className="grid gap-4 grid-cols-2 sm:grid-cols-4">
+                {CardList.map(v => <CardItem key={v.productName}  {...v} />)
+                }
+            </div>
         </section>
     )
 }
