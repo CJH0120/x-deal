@@ -105,6 +105,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 }
 
 
+
 export default Commerce
 interface CommerceData {
     [key: string]: {

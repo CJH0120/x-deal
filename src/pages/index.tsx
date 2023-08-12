@@ -1,10 +1,11 @@
 import { Inter } from 'next/font/google'
 import { Button } from '@nextui-org/button'
-import { Avatar, AvatarIcon, Card, CardBody, CardFooter, CardHeader, Chip, Image, Link } from '@nextui-org/react'
+import { Avatar, AvatarIcon, Card, CardBody, CardFooter, CardHeader, Chip, Image } from '@nextui-org/react'
 import CardItem from '../../components/Card'
 import LayOut from '../../components/layouts/layout'
 import { useRouter } from 'next/router'
 import ItemList from '../../components/layouts/ItemList'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
