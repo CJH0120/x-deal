@@ -1,13 +1,11 @@
 import { Inter } from 'next/font/google'
 import { Button } from '@nextui-org/button'
-import { Avatar, AvatarIcon, Card, CardBody, CardFooter, CardHeader, Chip, Image } from '@nextui-org/react'
-import CardItem from '../../components/Card'
+import { Card, CardBody, CardFooter, Chip, Image } from '@nextui-org/react'
 import LayOut from '../../components/layouts/layout'
 import { useRouter } from 'next/router'
 import ItemList from '../../components/layouts/ItemList'
 import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
@@ -97,6 +95,7 @@ const SiteGather = () => {
                 radius="lg"
                 width={"100%"}
                 alt={item.title}
+                loading='lazy'
                 className="w-full object-cover h-[140px] "
                 src={item.img}
               />

@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang='kr'>
       <Head>
         {(process.env.NODE_ENV === 'development' || process.env.VERCEL_ENV === 'preview') && (
           // eslint-disable-next-line @next/next/no-sync-scripts

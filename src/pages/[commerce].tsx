@@ -1,12 +1,8 @@
 import { useRouter } from "next/router";
 import LayOut from "../../components/layouts/layout";
-import { useEffect, useState } from "react";
-import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image, Link } from "@nextui-org/react";
-import ArrowRight from "../../components/icon/ArrowRight";
+import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
 import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPageContext } from "next";
-import { Props } from "next/script";
-import Head from "next/head";
-import { ParsedUrlQuery } from "querystring";
+import Link from "next/link";
 
 
 interface CommerceProps {
