@@ -51,7 +51,7 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
 
             </Head>
             {
-                loading && (
+                !loading && (
                     <>
                         <Navbar shouldHideOnScroll className="border-b-1" >
                             <NavbarBrand onClick={() => { router.push('/') }}>
