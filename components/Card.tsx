@@ -9,6 +9,7 @@ export interface CardItemProps {
     productImage: string
     storeName: string
     isDetail: boolean
+    productCategory: string
 }
 const CardItem = ({ productHref, productName, productPrice, productImage, isDetail, storeName }: CardItemProps) => {
     return (
@@ -26,7 +27,7 @@ const CardItem = ({ productHref, productName, productPrice, productImage, isDeta
                     />
                 </CardBody>
                 <CardFooter className="text-small justify-between">
-                    <b className='truncate ... '>{productName}</b>
+                    <h3 className='truncate ... font-bold '>{productName}</h3>
                 </CardFooter>
 
                 <div className='p-3 flex flex-col gap-2'>

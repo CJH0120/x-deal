@@ -33,7 +33,7 @@ const SiteGather = () => {
   const router = useRouter()
   return (
     <div className='' style={{ width: "100%", maxWidth: "1024px", }}>
-      <p className='mb-3 sm:mb-4 text-xl sm:text-2xl font-bold'>저렴한 가격과 최고의 품질을 만나보세요!</p>
+      <h2 className='mb-3 sm:mb-4 text-xl sm:text-2xl font-bold'>저렴한 가격과 최고의 품질을 만나보세요!</h2>
       <p className='mb-4 sm:mb-8 text-small' style={{ color: "#A1A1AA" }}> 클릭하시면 해당 웹사이트의 특별 할인 상품을 확인하실 수 있습니다. 지금 놓치지 마세요</p>
       <div className="hidden gap-4 sm:grid grid-cols-2 sm:grid-cols-4" >
         {commerceStore.map((v, index) => (
@@ -50,7 +50,7 @@ const SiteGather = () => {
               />
             </CardBody>
             <CardFooter className="text-small justify-between">
-              <b>{v.displayName}</b>
+              <h3 className='font-bold'>{v.displayName}</h3>
               <Link href={v.link} target="_blank" onClick={(e) => { e.stopPropagation() }}>
                 <Chip radius="sm" color="primary">방문하기</Chip>
               </Link>
