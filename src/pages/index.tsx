@@ -14,7 +14,6 @@ export default function Home() {
   return (
     <LayOut>
       <SiteGather />
-
       <ItemList data={dummy} />
 
     </LayOut>

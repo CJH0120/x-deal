@@ -6,7 +6,7 @@ import Link from "next/link";
 import ItemList from "../../components/layouts/ItemList";
 import { CommerceData, commerceStore } from "../../utils/props";
 import { useEffect, useState } from "react";
-import { CardItemProps } from "../../components/Card";
+import { CardItemProps, cardPorps } from "../../components/Card";
 import { CardList } from "../../dummy";
 
 
@@ -101,13 +101,19 @@ interface CoupangListProps {
 }
 const CoupangList = () => {
     const dummy = CardList
-    const [data, setData] = useState<CardItemProps[]>([])
+    const [data, setData] = useState<cardPorps[]>([])
     const [selected, setSelected] = useState<React.Key>("전체");
+    const [isload, setIsLoad] = useState<boolean>(false)
     useEffect(() => {
+        setIsLoad(true)
         const filteredData = selected === "전체"
             ? dummy
             : dummy.filter(v => v.productCategory === selected);
         setData(filteredData);
+
+        setTimeout(() => {
+            setIsLoad(false)
+        }, 300);
     }, [selected]);
     return (
         <div className="relative mt-5">
@@ -115,10 +121,10 @@ const CoupangList = () => {
             <Tabs aria-label="Options" className="w-full" onSelectionChange={setSelected}>
                 {categories.map(v =>
                     <Tab key={v} title={v}  >
+                        <ItemList data={data} isload={isload} />
                     </Tab>
                 )}
             </Tabs>
-            <ItemList data={data} />
         </div >
     )
 }

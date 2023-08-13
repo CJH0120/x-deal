@@ -1,6 +1,6 @@
-import { CardItemProps } from "../components/Card"
+import { CardItemProps, cardPorps } from "../components/Card"
 
-export const CardList: CardItemProps[] = [
+export const CardList: cardPorps[] = [
 	{
 		isDetail: true,
 		productHref: "https://link.coupang.com/a/6EdUw",
