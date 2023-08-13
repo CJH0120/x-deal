@@ -16,8 +16,6 @@ const Commerce = ({ meta }: CommerceProps) => {
     const router = useRouter();
     const { commerce } = router.query;
     const { displayName, logoPath } = meta;
-
-
     return (
         <>
             <LayOut meta={{ ogTitle: `X-DEAL X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>

@@ -28,66 +28,14 @@ interface siteProps {
 
 }
 const SiteGather = () => {
-  const list: siteProps[] = [
-    {
-      title: "쿠팡",
-      img: "/logo/coupang.webp",
-      link: "https://link.coupang.com/a/6qRXH",
-      pageLink: "/coupang"
-    },
-    {
-      title: "11번가",
-      img: "/logo/11.webp",
-      link: "https://bitl.bz/UNlyEZ",
-      pageLink: "/11st"
 
-    },
-    {
-      title: "옥션",
-      img: "/logo/autcion.webp",
-      link: "https://bitl.bz/HsHOw6",
-      pageLink: "/auction"
-    },
-    {
-      title: "지마켓",
-      img: "/logo/gMarket.webp",
-      link: "https://bitl.bz/XfmPia",
-      pageLink: "/gmarket"
-
-    },
-    {
-      title: "지에스몰",
-      img: "/logo/gsMall.webp",
-      link: "https://bitl.bz/Wb8EmX",
-      pageLink: "/gsmall"
-
-    },
-    {
-      title: "위메프",
-      img: "/logo/we.webp",
-      link: "https://bitl.bz/f53jjo",
-      pageLink: "/wemakeprice"
-    },
-    {
-      title: "하이마트",
-      img: "/logo/hiMart.webp",
-      link: "https://bitl.bz/cBSLxW",
-      pageLink: "/himart"
-    },
-    {
-      title: "롯데몰",
-      img: "/logo/lotte.webp",
-      link: "https://bitl.bz/GsWQR3",
-      pageLink: "lotte"
-    },
-  ];
   const router = useRouter()
   return (
     <div className='' style={{ width: "100%", maxWidth: "1024px", }}>
       <p className='mb-3 sm:mb-4 text-xl sm:text-2xl font-bold'>저렴한 가격과 최고의 품질을 만나보세요!</p>
       <p className='mb-4 sm:mb-8 text-small' style={{ color: "#A1A1AA" }}> 클릭하시면 해당 웹사이트의 특별 할인 상품을 확인하실 수 있습니다. 지금 놓치지 마세요</p>
       <div className="hidden gap-4 sm:grid grid-cols-2 sm:grid-cols-4" >
-        {list.map((item, index) => (
+        {List.map((item, index) => (
           <Card shadow="sm" className='hidden sm:flex' key={item.title} isPressable onClick={() => { router.push(item.pageLink) }}  >
             <CardBody className="overflow-visible p-0">
               <Image
@@ -113,7 +61,7 @@ const SiteGather = () => {
 
       </div>
       <div className='grid gap-4 grid-cols-4  justify-center items-center sm:hidden my-8'>
-        {list.map((item, index) => (
+        {List.map((item, index) => (
           <Link href={item.pageLink} key={item.img}>
             <div className='flex gap-3 flex-col justify-center items-center m-auto' key={index}>
               <Image
@@ -133,3 +81,56 @@ const SiteGather = () => {
 
 
 
+export const List: siteProps[] = [
+  {
+    title: "쿠팡",
+    img: "/logo/coupang.webp",
+    link: "https://link.coupang.com/a/6qRXH",
+    pageLink: "/coupang"
+  },
+  {
+    title: "11번가",
+    img: "/logo/11.webp",
+    link: "https://bitl.bz/UNlyEZ",
+    pageLink: "/11st"
+
+  },
+  {
+    title: "옥션",
+    img: "/logo/autcion.webp",
+    link: "https://bitl.bz/HsHOw6",
+    pageLink: "/auction"
+  },
+  {
+    title: "지마켓",
+    img: "/logo/gMarket.webp",
+    link: "https://bitl.bz/XfmPia",
+    pageLink: "/gmarket"
+
+  },
+  {
+    title: "지에스몰",
+    img: "/logo/gsMall.webp",
+    link: "https://bitl.bz/Wb8EmX",
+    pageLink: "/gsmall"
+
+  },
+  {
+    title: "위메프",
+    img: "/logo/we.webp",
+    link: "https://bitl.bz/f53jjo",
+    pageLink: "/wemakeprice"
+  },
+  {
+    title: "하이마트",
+    img: "/logo/hiMart.webp",
+    link: "https://bitl.bz/cBSLxW",
+    pageLink: "/himart"
+  },
+  {
+    title: "롯데몰",
+    img: "/logo/lotte.webp",
+    link: "https://bitl.bz/GsWQR3",
+    pageLink: "lotte"
+  },
+];

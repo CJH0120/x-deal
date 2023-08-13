@@ -13,13 +13,12 @@ export interface CardItemProps {
 const CardItem = ({ productHref, productName, productPrice, productImage, isDetail, storeName }: CardItemProps) => {
     return (
         <Link target="_blank" href={productHref} >
-            <Card shadow="sm" isPressable onPress={() => console.log("item pressed")}>
-                <CardBody className="overflow-visible p-0 aspect-w-1 aspect-h-1 ">
+            <Card shadow="sm" className=' max-w-[212px] lg:max-w-[212px] ] '   >
+                <CardBody className="overflow-visible p-0  ">
                     <Image
                         shadow="sm"
                         radius="lg"
-                        width="100%"
-                        className="w-full object-cover   "
+                        className="w-full max-w-[212px]  lg:max-w-[212px]  object-cover"
                         src={productImage}
                     />
                 </CardBody>
