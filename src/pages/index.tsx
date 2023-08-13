@@ -6,15 +6,16 @@ import { useRouter } from 'next/router'
 import ItemList from '../../components/layouts/ItemList'
 import Link from 'next/link'
 import { commerceStore } from '../../utils/props'
+import { CardList } from '../../dummy'
 
 
 export default function Home() {
-
+  const dummy = CardList
   return (
     <LayOut>
       <SiteGather />
 
-      <ItemList />
+      <ItemList data={dummy} />
 
     </LayOut>
   )
