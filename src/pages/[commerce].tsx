@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
 import LayOut from "../../components/layouts/layout";
-import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Tab, Tabs } from "@nextui-org/react";
 import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPageContext } from "next";
 import Link from "next/link";
 import ItemList from "../../components/layouts/ItemList";
 import { CommerceData, commerceStore } from "../../utils/props";
+import { useEffect, useState } from "react";
 
 
 interface CommerceProps {
@@ -35,7 +36,8 @@ const Commerce = ({ meta }: CommerceProps) => {
                     {meta.displayName === "coupang" && <p className="text-gray-800	text-xs sm:text-sm mt-5 sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
                     {commerce !== "coupang" && <p className="text-gray-800	text-xs	sm:text-sm mt-2 sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
                 </Link>
-                <ItemList />
+
+                {commerce === "coupang" && <CoupangList />}
             </LayOut >
         </>
     )
@@ -88,3 +90,24 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 
 export default Commerce
 
+//가전0 /핸드폰1 인테리어6 /식품7   /주방용품8 /생활용품10/문구완구11
+
+const categories = ["전체", "가전", "핸드폰", "인테리어", "식품", "주방용품", "생활용품", "문구완구"]
+const CoupangList = () => {
+    const [idx, setIdx] = useState<string>("전체")
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        console.log(e.currentTarget.value)
+        setIdx(e.currentTarget.innerText)
+    }
+    return (
+        <div className="relative mt-5">
+            <p className="text-base sm:text-2xl font-bold my-4 sm:my-10 ">해당 상품을 누르시면 구매 페이지로 이동합니다</p>
+            <Tabs variant={"solid"} radius="lg" aria-label="Tabs variants" className="w-full flex flex-col">
+                {categories.map(v => <Tab title={v} key={v} className="" />)}
+
+            </Tabs>
+            <ItemList />
+
+        </div>
+    )
+}

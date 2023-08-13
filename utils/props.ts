@@ -46,7 +46,7 @@ export const commerceStore: CommerceData[] = [
 		logoPath: "/logo/gsMall.webp",
 		link: "https://bitl.bz/Wb8EmX",
 		pageLink: "/gsmall",
-		ogImg: "/og/xgsmall.png",
+		ogImg: "/og/wgsmall.png",
 	},
 	{
 		key: "himart",
