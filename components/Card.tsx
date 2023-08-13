@@ -17,6 +17,7 @@ const CardItem = ({ productHref, productName, productPrice, productImage, isDeta
                 <CardBody className="overflow-visible p-0  ">
                     <Image
                         shadow="sm"
+                        draggable={false}
                         radius="lg"
                         className="w-full max-w-[212px]  lg:max-w-[212px]  object-cover"
                         src={productImage}

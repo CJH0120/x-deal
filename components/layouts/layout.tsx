@@ -35,7 +35,7 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
         <>
             <Head>
                 <title>{meta?.title ?? `최저가 상품 추천앱, 엑스딜::X-DEAL`}</title>
-                <meta name="description" content={meta?.description ?? `저렴한 가격의 제품을 추천하는 다른 쇼핑몰 비교 웹사이트입니다. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요.`} />
+                <meta name="description" content={meta?.description ?? `저렴한 가격의 제품을 추천하는 쇼핑몰. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요.`} />
                 <meta name="keywords" content={meta?.keywords ?? `엑스딜,쇼핑몰 추천, 저렴한 상품, 가격 비교, 할인 상품, 비용 절약, 쇼핑 가이드`} />
                 <meta name="copyright" content="Copyright © 2023 by X-Deal" />
                 <meta name="robots" content="index, follow" />
@@ -46,9 +46,8 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
                 <meta property="og:type" content="website" />
                 <meta property="og:site_name" content="최저가 상품 추천앱, 엑스딜::X-DEAL" />
                 <meta property="og:title" content={meta?.ogTitle ?? `최저가 상품 추천앱, 엑스딜::X-DEAL`} />
-                <meta property="og:description" content={meta?.ogDescription ?? `저렴한 가격의 제품을 추천하는 다른 쇼핑몰 비교 웹사이트입니다. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요.`} />
+                <meta property="og:description" content={meta?.ogDescription ?? `저렴한 가격의 제품을 추천하는 쇼핑몰. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요.`} />
                 <meta property="og:image" content={meta?.ogImage ?? `/favicon/og.png`} />
-
             </Head>
             {
                 !loading && (
