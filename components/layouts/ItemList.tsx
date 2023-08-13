@@ -1,4 +1,4 @@
-import { Chip, Image } from "@nextui-org/react"
+import { Button, Chip, Image, Link, Tab, Tabs } from "@nextui-org/react"
 import CardItem, { CardItemProps, cardPorps } from "../Card"
 import { CardList } from "../../dummy"
 import { useEffect } from "react"
@@ -7,17 +7,25 @@ import { useEffect } from "react"
 interface ItemListProps {
     data: cardPorps[]
     isload?: boolean
+    listTitle?: string
 }
 const ItemList = ({ data, isload }: ItemListProps) => {
     return (
-        <section className="my-4 sm:my-10">
-            <div className="w-full ">
-                {/* <p className="text-base sm:text-2xl font-bold my-4 sm:my-10 ">해당 상품을 누르시면 구매 페이지로 이동합니다</p> */}
-            </div>
-            <div className="grid gap-4 grid-cols-2 sm:grid-cols-4">
-                {data?.map((v, idx) => <CardItem key={idx} card={v} isload={isload} />)
-                }
-            </div>
+        <section className="my-4 sm:my-0">
+            {!!data.length ?
+                <div className="grid gap-4 grid-cols-2 sm:grid-cols-4">
+                    {data?.map((v, idx) => <CardItem key={idx} card={v} isload={isload} />)
+                    }
+                </div>
+
+                :
+
+                <div className="flex gap-4 flex-col justify-center items-center h-[300px]">
+                    <p className="text-2xl font-bold">준비된 상품이 없습니다</p>
+                    <p className="text-xl font-bold">잠시 뒤에 이용해주세요.</p>
+
+                </div>
+            }
         </section>
     )
 }

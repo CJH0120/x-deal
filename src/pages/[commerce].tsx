@@ -28,18 +28,18 @@ const Commerce = ({ meta }: CommerceProps) => {
                                 <div className="flex flex-col justify-between  ml-4 text-gray-800 ">
                                     <h2 className="text-sm font-bold text-sm sm:text-lg	">{displayName}의 새로운 상품들로 더욱 특별한 쇼핑을 즐겨보세요!</h2>
                                     {commerce === "coupang" && <p className="text-gray-800	text-xs sm:text-sm  hidden sm:block">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
-                                    {commerce !== "coupang" && <p className="text-gray-800	text-xs sm:text-sm  hidden sm:block">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                                    {commerce !== "coupang" && <p className="text-gray-800	text-xs sm:text-sm  hidden sm:block">쿠팡이외</p>}
 
                                 </div>
                             </div>
-                            <Button color="primary" size="sm" >둘러보기</Button>
+                            <Button style={{ color: "black", borderColor: "black" }} variant="bordered" size="md"  >둘러보기</Button>
                         </div>
                     </div>
-                    {meta.displayName === "coupang" && <p className="text-gray-800	text-xs sm:text-sm mt-5 sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
-                    {commerce !== "coupang" && <p className="text-gray-800	text-xs	sm:text-sm mt-2 sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                    {commerce === "coupang" && <p className="text-gray-800 flex	text-xs sm:text-sm mt-5  sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                    {commerce !== "coupang" && <p className="text-gray-800	text-xs	sm:text-sm mt-2 sm:hidden">쿠팡이외</p>}
                 </Link>
-
                 {commerce === "coupang" && <CoupangList />}
+                {commerce !== "coupang" && <OtherList />}
             </LayOut >
         </>
     )
@@ -103,7 +103,8 @@ const CoupangList = () => {
     const dummy = CardList
     const [data, setData] = useState<cardPorps[]>([])
     const [selected, setSelected] = useState<React.Key>("전체");
-    const [isload, setIsLoad] = useState<boolean>(false)
+    const [order, setIsOrder] = useState<React.Key>(3)
+    const [isload, setIsLoad] = useState<boolean>(true)
     useEffect(() => {
         setIsLoad(true)
         const filteredData = selected === "전체"
@@ -113,18 +114,53 @@ const CoupangList = () => {
 
         setTimeout(() => {
             setIsLoad(false)
-        }, 300);
+        }, 250);
     }, [selected]);
+
+
+    useEffect(() => {
+        if (order === 0 || order === "0") {
+            setData(v => [...v].sort((a, b) => convertPrice(a.productPrice) - convertPrice(b.productPrice)));
+        } else if (order === 1 || order === "1") {
+            setData(v => [...v].sort((a, b) => convertPrice(b.productPrice) - convertPrice(a.productPrice)));
+        } else if (order === 2 || order === "2") {
+            setData(v => [...v].sort((a, b) => a.productName.localeCompare(b.productName)));
+        }
+    }, [order]);
+
+    const convertPrice = (priceString: string) => {
+        const priceWithoutCommas = priceString.replace(/,/g, '');
+        return parseInt(priceWithoutCommas);
+    };
+
     return (
         <div className="relative mt-5">
-            <p className="text-base sm:text-2xl font-bold my-4 sm:my-10 ">해당 상품을 누르시면 구매 페이지로 이동합니다</p>
-            <Tabs aria-label="Options" className="w-full" onSelectionChange={setSelected}>
-                {categories.map(v =>
-                    <Tab key={v} title={v}  >
-                        <ItemList data={data} isload={isload} />
-                    </Tab>
-                )}
-            </Tabs>
+            <div className="flex justify-between items-center w-full grow flex-col sm:flex-row gap-4 sm:gap-0 mb-5 sm:mb-0">
+                <Tabs aria-label="Options" className="w-full " onSelectionChange={setSelected}>
+                    {categories.map(v =>
+                        <Tab key={v} title={v}  >
+                        </Tab>
+                    )}
+                </Tabs>
+                <div className="w-full sm:my-6 flex justify-start sm:justify-end items-center  ">
+                    <Tabs color="primary" aria-label="Tabs colors" className="flex" onSelectionChange={setIsOrder} >
+                        <Tab key={2} title="이름순" />
+                        <Tab key={0} title="가격 낮은순" />
+                        <Tab key={1} title="가격 높은순" />
+                    </Tabs>
+                </div>
+            </div>
+            <ItemList data={data} isload={isload} />
         </div >
+    )
+}
+
+
+const OtherList = () => {
+    const data: cardPorps[] = []
+    return (
+        <div>
+            <ItemList data={data} />
+        </div>
     )
 }

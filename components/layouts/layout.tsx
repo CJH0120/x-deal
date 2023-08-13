@@ -48,6 +48,8 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
                 <meta property="og:title" content={meta?.ogTitle ?? `최저가 상품 추천앱, 엑스딜::X-DEAL`} />
                 <meta property="og:description" content={meta?.ogDescription ?? `저렴한 가격의 제품을 추천하는 쇼핑몰. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요.`} />
                 <meta property="og:image" content={meta?.ogImage ?? `/favicon/og.png`} />
+                <link rel="icon" href="/favicon.ico" sizes="any" />
+                <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png" />
             </Head>
             <Navbar shouldHideOnScroll className="border-b-1" >
                 <NavbarBrand onClick={() => { router.push('/') }}>

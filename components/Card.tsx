@@ -13,7 +13,6 @@ export interface cardPorps {
     productPrice: string
     productImage: string
     storeName: string
-    isDetail: boolean
     productCategory: string
 }
 const CardItem = ({ card, isload = false }: CardItemProps) => {
@@ -40,14 +39,14 @@ const CardItem = ({ card, isload = false }: CardItemProps) => {
                     </Card>
 
                     :
-                    <Card shadow="sm" className=' max-w-[212px] lg:max-w-[212px] ] '   >
+                    <Card shadow="sm" className=' max-w-[212px] lg:max-w-[232px] lg:w-[232px]  '   >
                         <CardBody className="overflow-visible p-0  ">
                             <Image
                                 loading='lazy'
                                 shadow="sm"
                                 draggable={false}
                                 radius="lg"
-                                className="w-full max-w-[212px]  lg:max-w-[212px]  object-cover"
+                                className="w-full max-w-[212px]  lg:max-w-[232px] lg:w-[232px]    object-cover"
                                 src={productImage}
                                 alt={productName}
                             />

@@ -14,7 +14,14 @@ export default function Home() {
   return (
     <LayOut>
       <SiteGather />
-      <ItemList data={dummy} />
+
+      <div className='mt-10'>
+        <div className='flex justify-between items-center'>
+          <h3 className='text-2xl sm:text-3xl font-bold my-5'>쿠팡 오늘의 핫딜</h3>
+          <Link href={'/coupang'}>더보기</Link>
+        </div>
+        <ItemList data={dummy} />
+      </div>
 
     </LayOut>
   )
@@ -59,6 +66,7 @@ const SiteGather = () => {
         ))}
       </div>
       <div className='grid gap-4 grid-cols-4  justify-center items-center sm:hidden my-8'>
+
         {commerceStore.map((item, index) => (
           <Link href={item.pageLink} key={item.key}>
             <div className='flex gap-3 flex-col justify-center items-center m-auto' key={index}>
@@ -68,7 +76,7 @@ const SiteGather = () => {
                 loading='lazy'
                 className='w-12 h-12 p-0 border border-slate-200 rounded-full justify-center items-center'
               />
-              <span className='truncate 	'  >{item.displayName} </span>
+              <span className='truncate'>{item.displayName} </span>
             </div>
           </Link>
         ))}
