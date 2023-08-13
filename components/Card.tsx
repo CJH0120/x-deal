@@ -16,7 +16,7 @@ export interface cardPorps {
     productCategory: string
 }
 const CardItem = ({ card, isload = false }: CardItemProps) => {
-    const { isDetail, productCategory, productHref, productImage, productName, productPrice, storeName } = card
+    const { productCategory, productHref, productImage, productName, productPrice, storeName } = card
     return (
         <Link target="_blank" href={productHref} >
             {
