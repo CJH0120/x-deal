@@ -5,6 +5,7 @@ import LayOut from '../../components/layouts/layout'
 import { useRouter } from 'next/router'
 import ItemList from '../../components/layouts/ItemList'
 import Link from 'next/link'
+import { commerceStore } from '../../utils/props'
 
 
 export default function Home() {
@@ -35,41 +36,39 @@ const SiteGather = () => {
       <p className='mb-3 sm:mb-4 text-xl sm:text-2xl font-bold'>저렴한 가격과 최고의 품질을 만나보세요!</p>
       <p className='mb-4 sm:mb-8 text-small' style={{ color: "#A1A1AA" }}> 클릭하시면 해당 웹사이트의 특별 할인 상품을 확인하실 수 있습니다. 지금 놓치지 마세요</p>
       <div className="hidden gap-4 sm:grid grid-cols-2 sm:grid-cols-4" >
-        {List.map((item, index) => (
-          <Card shadow="sm" className='hidden sm:flex' key={item.title} isPressable onClick={() => { router.push(item.pageLink) }}  >
+        {commerceStore.map((v, index) => (
+          <Card shadow="sm" className='hidden sm:flex' key={v.displayName} isPressable onClick={() => { router.push(v.pageLink) }}  >
             <CardBody className="overflow-visible p-0">
               <Image
                 shadow="sm"
                 radius="lg"
                 width={"100%"}
-                alt={item.title}
+                alt={v.displayName}
                 loading='lazy'
                 className="w-full object-cover h-[140px] "
-                src={item.img}
+                src={v.logoPath}
               />
             </CardBody>
             <CardFooter className="text-small justify-between">
-              <b>{item.title}</b>
-              <Link href={item.link} target="_blank">
+              <b>{v.displayName}</b>
+              <Link href={v.link} target="_blank" onClick={(e) => { e.stopPropagation() }}>
                 <Chip radius="sm" color="primary">방문하기</Chip>
               </Link>
             </CardFooter>
           </Card>
         ))}
-
-
-
       </div>
       <div className='grid gap-4 grid-cols-4  justify-center items-center sm:hidden my-8'>
-        {List.map((item, index) => (
-          <Link href={item.pageLink} key={item.img}>
+        {commerceStore.map((item, index) => (
+          <Link href={item.pageLink} key={item.key}>
             <div className='flex gap-3 flex-col justify-center items-center m-auto' key={index}>
               <Image
-                src={item.img}
-                alt={item.title}
+                src={item.logoPath}
+                alt={item.displayName}
+                loading='lazy'
                 className='w-12 h-12 p-0 border border-slate-200 rounded-full justify-center items-center'
               />
-              <span className='truncate 	'  >{item.title} </span>
+              <span className='truncate 	'  >{item.displayName} </span>
             </div>
           </Link>
         ))}
@@ -84,7 +83,7 @@ const SiteGather = () => {
 export const List: siteProps[] = [
   {
     title: "쿠팡",
-    img: "/logo/coupang.webp",
+    img: "/logo/coupang.png",
     link: "https://link.coupang.com/a/6qRXH",
     pageLink: "/coupang"
   },

@@ -4,44 +4,37 @@ import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Image } from "@
 import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPageContext } from "next";
 import Link from "next/link";
 import ItemList from "../../components/layouts/ItemList";
+import { CommerceData, commerceStore } from "../../utils/props";
 
 
 interface CommerceProps {
-    meta: {
-        displayName: string;
-        logoPath: string;
-    };
+    meta: CommerceData
 }
 const Commerce = ({ meta }: CommerceProps) => {
     const router = useRouter();
     const { commerce } = router.query;
-    const { displayName, logoPath } = meta;
+    const { displayName, logoPath, link, pageLink, ogImg } = meta;
     return (
         <>
-            <LayOut meta={{ ogTitle: `X-DEAL X ${meta.displayName}`, title: `X-DEAL :: ${meta.displayName}` }}>
-                <Link target="_blank" href="https://link.coupang.com/a/6qRXH" className="w-full 	">
+            <LayOut meta={{ ogTitle: `X-DEAL X ${meta.displayName}`, title: `최저가 상품 추천앱, X-DEAL :: ${meta.displayName}`, ogImage: ogImg }}>
+                <Link target="_blank" href={link} className="w-full">
                     <div className="w-full flex grow">
                         <div className="flex justify-between items-center  w-full"  >
                             <div className="flex"  >
-                                <Image className="border  object-cover" width={56} alt={`X-DEAL X ${meta.displayName}`} src={logoPath as string} />
+                                <Image className="border  object-cover" width={56} alt={`X-DEAL X ${meta.displayName}`} src={logoPath as unknown as string} />
                                 <div className="flex flex-col justify-between  ml-4 text-gray-800 ">
                                     <p className="text-sm font-bold text-sm sm:text-lg	">{displayName}의 새로운 상품들로 더욱 특별한 쇼핑을 즐겨보세요!</p>
                                     {commerce === "coupang" && <p className="text-gray-800	text-xs sm:text-sm  hidden sm:block">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                                    {commerce !== "coupang" && <p className="text-gray-800	text-xs sm:text-sm  hidden sm:block">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
 
                                 </div>
                             </div>
-                            <Button color="primary" size="md" >둘러보기</Button>
+                            <Button color="primary" size="sm" >둘러보기</Button>
                         </div>
                     </div>
-                    {commerce === "coupang" && <p className="text-gray-800	text-xs sm:text-sm mt-5 sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
-                    {commerce !== "coupang" && <p className="text-gray-800	text-xs	sm:text-sm mt-2  sm:mt-5">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                    {meta.displayName === "coupang" && <p className="text-gray-800	text-xs sm:text-sm mt-5 sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
+                    {commerce !== "coupang" && <p className="text-gray-800	text-xs	sm:text-sm mt-2 sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
                 </Link>
-
-
-                <div className="mt-5">
-
-                </div>
-
                 <ItemList />
             </LayOut >
         </>
@@ -73,10 +66,11 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
     const commerce = params?.commerce;
 
     if (["coupang", "auction", "11st", "gmarket", "gsmall", "himart", "lotte", "wemakeprice"].includes(commerce as string)) {
-        const meta = commerceData[commerce as keyof typeof commerceData];
+        const metaKey = commerce as keyof typeof commerceStore;
+        const meta = commerceStore.find(v => v.key === metaKey);
         return {
             props: {
-                meta,
+                meta: meta
             },
             revalidate: 60,
         };
@@ -93,43 +87,4 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 
 
 export default Commerce
-interface CommerceData {
-    [key: string]: {
-        displayName: string;
-        logoPath: string;
-    };
-}
-const commerceData: CommerceData = {
-    "coupang": {
-        displayName: "쿠팡",
-        logoPath: "/logo/coupang.webp",
-    },
-    "auction": {
-        displayName: "옥션",
-        logoPath: "/logo/autcion.webp",
-    },
-    "11st": {
-        displayName: "11번가",
-        logoPath: "/logo/11.webp",
-    },
-    "gmarket": {
-        displayName: "지마켓",
-        logoPath: "/logo/gMarket.webp",
-    },
-    "gsmall": {
-        displayName: "지스몰",
-        logoPath: "/logo/gsMall.webp",
-    },
-    "himart": {
-        displayName: "하이마트",
-        logoPath: "/logo/hiMart.webp",
-    },
-    "lotte": {
-        displayName: "롯데",
-        logoPath: "/logo/lotte.webp",
-    },
-    "wemakeprice": {
-        displayName: "위메프",
-        logoPath: "/logo/we.webp",
-    },
-};
+

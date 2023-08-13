@@ -16,11 +16,13 @@ const CardItem = ({ productHref, productName, productPrice, productImage, isDeta
             <Card shadow="sm" className=' max-w-[212px] lg:max-w-[212px] ] '   >
                 <CardBody className="overflow-visible p-0  ">
                     <Image
+                        loading='lazy'
                         shadow="sm"
                         draggable={false}
                         radius="lg"
                         className="w-full max-w-[212px]  lg:max-w-[212px]  object-cover"
                         src={productImage}
+                        alt={productName}
                     />
                 </CardBody>
                 <CardFooter className="text-small justify-between">

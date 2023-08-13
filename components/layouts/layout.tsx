@@ -49,45 +49,39 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
                 <meta property="og:description" content={meta?.ogDescription ?? `저렴한 가격의 제품을 추천하는 쇼핑몰. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요.`} />
                 <meta property="og:image" content={meta?.ogImage ?? `/favicon/og.png`} />
             </Head>
-            {
-                !loading && (
-                    <>
-                        <Navbar shouldHideOnScroll className="border-b-1" >
-                            <NavbarBrand onClick={() => { router.push('/') }}>
-                                <h1 className="text-large cursor-pointer"> <Logo /></h1>
-                            </NavbarBrand>
-                            <NavbarContent justify="end" className="hidden sm:flex">
-                                {navList.map(v =>
-                                    <NavbarItem key={v.pageName} >
-                                        <Link href={v.link} color="foreground">{v.pageName}</Link>
-                                    </NavbarItem>
-                                )}
-                            </NavbarContent>
-                            <NavbarContent justify="end" className="flex sm:hidden" >
-                                <NavbarMenuToggle
-                                    className="sm:hidden"
-                                />
-                            </NavbarContent>
-                            <NavbarMenu>
-                                {navList.map((v, index) => (
-                                    <NavbarMenuItem key={`${v}-${index}`}>
-                                        <Link
-                                            color={"foreground"}
-                                            className="w-full"
-                                            href={v.link}
-                                        >
-                                            {v.pageName}
-                                        </Link>
-                                    </NavbarMenuItem>
-                                ))}
-                            </NavbarMenu>
-                        </Navbar>
-                        <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", margin: "0 auto" }}>
-                            {children}
-                        </div>
-                    </>
-
-                )}
+            <Navbar shouldHideOnScroll className="border-b-1" >
+                <NavbarBrand onClick={() => { router.push('/') }}>
+                    <h1 className="text-large cursor-pointer"> <Logo /></h1>
+                </NavbarBrand>
+                <NavbarContent justify="end" className="hidden sm:flex">
+                    {navList.map(v =>
+                        <NavbarItem key={v.pageName} >
+                            <Link href={v.link} color="foreground">{v.pageName}</Link>
+                        </NavbarItem>
+                    )}
+                </NavbarContent>
+                <NavbarContent justify="end" className="flex sm:hidden" >
+                    <NavbarMenuToggle
+                        className="sm:hidden"
+                    />
+                </NavbarContent>
+                <NavbarMenu>
+                    {navList.map((v, index) => (
+                        <NavbarMenuItem key={`${v}-${index}`}>
+                            <Link
+                                color={"foreground"}
+                                className="w-full"
+                                href={v.link}
+                            >
+                                {v.pageName}
+                            </Link>
+                        </NavbarMenuItem>
+                    ))}
+                </NavbarMenu>
+            </Navbar>
+            <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", margin: "0 auto" }}>
+                {children}
+            </div>
         </>
     )
 }
