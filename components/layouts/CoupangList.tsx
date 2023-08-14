@@ -1,6 +1,5 @@
 import { Button, Chip, Image, Link, Tab, Tabs } from "@nextui-org/react"
 import CardItem, { CardItemProps, cardPorps } from "../Card"
-import { CardList } from "../../dummy"
 import { useEffect } from "react"
 import CoupangCard from "../CoupangCard"
 
