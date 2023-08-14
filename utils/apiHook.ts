@@ -28,16 +28,7 @@ export const qs = (obj: { [key: string]: any }) => {
 }
 
 //쿠팡
-export const getCoupang = <Data = Product.Coupang[], Error = any>(
-	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
-) => {
-	const { data, error, mutate } = useSWR<Data, Error>(
-		`/api/v1/product/coupang`,
-		fetcher,
-		fetcherConfig
-	)
-	return result<Data, Error>(mutate, data, error)
-}
+
 export const useCoupangCategory = <Data = Param, Error = any>(
 	category: string,
 	page: number,
@@ -55,7 +46,7 @@ export const useCoupangCategory = <Data = Param, Error = any>(
 export const useProduct = <Data = Product.Coupang[], Error = any>(
 	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
 ) => {
-	const url = `/api/v1/product/`
+	const url = `/api/v1/product`
 	const { data, error, mutate, isLoading } = useSWR<Data, Error>(
 		url,
 		fetcher,
