@@ -15,7 +15,6 @@ export default function Home() {
   return (
     <LayOut>
       <SiteGather />
-
       <div className='mt-10'>
         <div className='flex justify-between items-center'>
           <h3 className='text-2xl sm:text-3xl font-bold my-5'>쿠팡 반품딜</h3>
@@ -23,12 +22,9 @@ export default function Home() {
         </div>
         <CoupangLists isload={isLoading} data={data} />
       </div>
-
     </LayOut>
   )
 }
-
-
 interface siteProps {
   title: string
   img: string

@@ -55,7 +55,7 @@ export const useCoupangCategory = <Data = Param, Error = any>(
 export const useProduct = <Data = Product.Coupang[], Error = any>(
 	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
 ) => {
-	const url = `/api/v1/product/` // URL 생성
+	const url = `/api/v1/product/`
 	const { data, error, mutate, isLoading } = useSWR<Data, Error>(
 		url,
 		fetcher,

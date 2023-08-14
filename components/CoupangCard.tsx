@@ -9,7 +9,6 @@ export interface CardItemProps {
 
 
 const CoupangCard = ({ card, isload = false }: CardItemProps) => {
-    console.log(card)
     const { category, image, name, originPrice, percent, price, productUrl, status } = card
 
 
