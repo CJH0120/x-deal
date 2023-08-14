@@ -6,21 +6,22 @@ import { useRouter } from 'next/router'
 import ItemList from '../../components/layouts/ItemList'
 import Link from 'next/link'
 import { commerceStore } from '../../utils/props'
-import { CardList } from '../../dummy'
+import { useProduct } from '../../utils/apiHook'
+import CoupangLists from '../../components/layouts/CoupangList'
 
 
 export default function Home() {
-  const dummy = CardList
+  const { data, error, isLoading } = useProduct()
   return (
     <LayOut>
       <SiteGather />
 
       <div className='mt-10'>
         <div className='flex justify-between items-center'>
-          <h3 className='text-2xl sm:text-3xl font-bold my-5'>쿠팡 오늘의 핫딜</h3>
+          <h3 className='text-2xl sm:text-3xl font-bold my-5'>쿠팡 반품딜</h3>
           <Link href={'/coupang'}>더보기</Link>
         </div>
-        <ItemList data={dummy} />
+        <CoupangLists isload={isLoading} data={data} />
       </div>
 
     </LayOut>

@@ -3,26 +3,18 @@ import { Card, CardFooter, Image, Button, CardHeader, CardBody, Link, Chip, Skel
 
 
 export interface CardItemProps {
-    card: cardPorps | Product.Coupang
+    card: Product.Coupang
     isload?: boolean
 }
 
-export interface cardPorps {
-    productName: string
-    productHref: string
-    productPrice: string
-    productImage: string
-    storeName: string
-    productCategory: string
-}
 
-const CardItem = ({ card, isload = false }: CardItemProps) => {
-
-    const { productCategory, productHref, productImage, productName, productPrice, storeName } = card as cardPorps;
+const CoupangCard = ({ card, isload = false }: CardItemProps) => {
+    console.log(card)
+    const { category, image, name, originPrice, percent, price, productUrl, status } = card
 
 
     return (
-        <Link target="_blank" href={productHref} >
+        <Link target="_blank" href={productUrl} >
             {
                 isload ?
                     <Card className=" flex flex-col grow w-full h-full space-y-5 " radius="lg">
@@ -51,23 +43,29 @@ const CardItem = ({ card, isload = false }: CardItemProps) => {
                                 draggable={false}
                                 radius="lg"
                                 className="w-full max-w-[212px]  lg:max-w-[232px] lg:w-[232px]    object-cover"
-                                src={productImage}
-                                alt={productName}
+                                src={image}
+                                alt={name}
                             />
                         </CardBody>
                         <CardFooter className="text-small justify-between">
-                            <h3 className='truncate ... font-bold '>{productName}</h3>
+                            <h3 className='truncate ... font-bold '>{name}</h3>
                         </CardFooter>
 
                         <div className='p-3 flex flex-col gap-2'>
-                            <p color='default' className='font-semibold	 text-sm lg:text-xl	'>{productPrice}</p>
-                            <Chip size="sm" color='primary' variant='flat'>
-                                {storeName}
-                            </Chip>
+                            <div className='flex justify-between items-center'>
+                                <Chip color="danger" className='flex ' size="sm" variant='flat' >-{percent}</Chip>
+                                <p className='font-semibold 	 text-sm lg:text-xl	'>{price}</p>
+                            </div>
+                            <div className='flex justify-between itmes-center'>
+                                <Chip size="md" color='primary' variant='flat'>
+                                    쿠팡
+                                </Chip>
+                                <Button size='sm' variant='solid'  >{status}</Button>
+                            </div>
                         </div>
                     </Card>
             }
         </Link>
     )
 }
-export default CardItem
+export default CoupangCard

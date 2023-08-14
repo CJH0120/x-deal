@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import * as gtag from '../../lib/gtag';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
+import { SWRConfig } from 'swr';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -31,6 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
      wcs_do(_nasa); } var _nasa = {}; // 초기화 구문
      `;
   }, [router.events])
+
   return (
     <>
       {/* GA 설정 시작 */}
@@ -52,10 +54,12 @@ export default function App({ Component, pageProps }: AppProps) {
       />
 
       {/* GA 설정 끝 */}
-      <NextUIProvider >
-        <Component {...pageProps} />
-        <Analytics />
-      </NextUIProvider>
+      <SWRConfig>
+        <NextUIProvider >
+          <Component {...pageProps} />
+          <Analytics />
+        </NextUIProvider>
+      </SWRConfig>
     </>
 
   )

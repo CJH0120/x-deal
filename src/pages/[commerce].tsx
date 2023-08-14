@@ -1,15 +1,14 @@
 import { useRouter } from "next/router";
 import LayOut from "../../components/layouts/layout";
-import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Tab, Tabs } from "@nextui-org/react";
-import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPageContext } from "next";
+import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Pagination, PaginationItem, Tab, Tabs } from "@nextui-org/react";
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextApiResponse, NextPageContext } from "next";
 import Link from "next/link";
 import ItemList from "../../components/layouts/ItemList";
 import { CommerceData, commerceStore } from "../../utils/props";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { CardItemProps, cardPorps } from "../../components/Card";
-import { CardList } from "../../dummy";
-
-
+import CoupangLists from "../../components/layouts/CoupangList";
+import { useCoupangCategory } from "../../utils/apiHook";
 interface CommerceProps {
     meta: CommerceData
 }
@@ -32,7 +31,7 @@ const Commerce = ({ meta }: CommerceProps) => {
 
                                 </div>
                             </div>
-                            <Button style={{ color: "black", borderColor: "black" }} variant="bordered" size="md"  >둘러보기</Button>
+                            <Button style={{ color: "black", borderColor: "black" }} variant="bordered" size="md"  >방문하기</Button>
                         </div>
                     </div>
                     {commerce === "coupang" && <p className="text-gray-800 flex	text-xs sm:text-sm mt-5  sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
@@ -96,47 +95,23 @@ export default Commerce
 
 const categories = ["전체", "가전", "핸드폰", "인테리어", "식품", "주방용품", "생활용품", "문구완구"]
 
-interface CoupangListProps {
-    data: CardItemProps[]
-}
 const CoupangList = () => {
-    const dummy = CardList
-    const [data, setData] = useState<cardPorps[]>([])
-    const [selected, setSelected] = useState<React.Key>("전체");
-    const [order, setIsOrder] = useState<React.Key>(3)
-    const [isload, setIsLoad] = useState<boolean>(true)
+    const [page, setPage] = useState<number>(1)
+    const [category, setCategory] = useState<React.Key>("전체")
+    const { data, mutate, isLoading } = useCoupangCategory(category as string, page)
+    const [datas, setData] = useState<Product.Coupang[]>([])
+    const [isorder, setIsOrder] = useState<React.Key>(0)
     useEffect(() => {
-        setIsLoad(true)
-        const filteredData = selected === "전체"
-            ? dummy
-            : dummy.filter(v => v.productCategory === selected);
-        setData(filteredData);
-
-        setTimeout(() => {
-            setIsLoad(false)
-        }, 250);
-    }, [selected]);
-
+        setPage(1)
+    }, [category])
 
     useEffect(() => {
-        if (order === 0 || order === "0") {
-            setData(v => [...v].sort((a, b) => convertPrice(a.productPrice) - convertPrice(b.productPrice)));
-        } else if (order === 1 || order === "1") {
-            setData(v => [...v].sort((a, b) => convertPrice(b.productPrice) - convertPrice(a.productPrice)));
-        } else if (order === 2 || order === "2") {
-            setData(v => [...v].sort((a, b) => a.productName.localeCompare(b.productName)));
-        }
-    }, [order]);
-
-    const convertPrice = (priceString: string) => {
-        const priceWithoutCommas = priceString.replace(/,/g, '');
-        return parseInt(priceWithoutCommas);
-    };
-
+        setData(sortData(data?.items ?? [], isorder))
+    }, [isorder, data])
     return (
         <div className="relative mt-5">
             <div className="flex justify-between items-center w-full grow flex-col sm:flex-row gap-4 sm:gap-0 mb-5 sm:mb-0">
-                <Tabs aria-label="Options" className="w-full " onSelectionChange={setSelected}>
+                <Tabs aria-label="Options" className="w-full " onSelectionChange={setCategory}>
                     {categories.map(v =>
                         <Tab key={v} title={v}  >
                         </Tab>
@@ -150,7 +125,8 @@ const CoupangList = () => {
                     </Tabs>
                 </div>
             </div>
-            <ItemList data={data} isload={isload} />
+            <CoupangLists isload={isLoading} data={datas} />
+            {!!data?.items.length && <Pagination className="mt-5" onChange={(page) => setPage(page)} total={data.totalItems} initialPage={page} size={"lg"} />}
         </div >
     )
 }
@@ -163,4 +139,19 @@ const OtherList = () => {
             <ItemList data={data} />
         </div>
     )
+}
+
+function sortData(data: Product.Coupang[], order: string | number): Product.Coupang[] {
+    if (order === 0 || order === "0") {
+        return [...data].sort((a, b) => convertPrice(a.price) - convertPrice(b.price));
+    } else if (order === 1 || order === "1") {
+        return [...data].sort((a, b) => convertPrice(b.price) - convertPrice(a.price));
+    } else if (order === 2 || order === "2") {
+        return [...data].sort((a, b) => a.name.localeCompare(b.name));
+    } else {
+        return data; // 예외 처리: 유효하지 않은 order 값일 경우 정렬하지 않고 원본 데이터 반환
+    }
+}
+function convertPrice(price: string): number {
+    return parseFloat(price.replace(/[^0-9.-]+/g, ""));
 }
