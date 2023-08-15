@@ -48,7 +48,7 @@ const CoupangList = () => {
             </>
 
 
-            {!!maxpage && <div className="flex justify-end w-full"> < Pagination className="" onChange={handelChange} total={maxpage as number} initialPage={1} /></div>}
+            {!!maxpage && <div className="flex justify-end sm:w-full"> < Pagination className="overflow-auto" onChange={handelChange} total={maxpage as number} initialPage={1} /></div>}
 
 
         </section>

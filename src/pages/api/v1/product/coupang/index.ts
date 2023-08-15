@@ -14,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
 		if (!category || category === "전체") {
 			const query =
-				"SELECT * FROM coupangItem_memory ORDER BY category LIMIT ? OFFSET ?;"
+				"SELECT * FROM coupangItem ORDER BY category LIMIT ? OFFSET ?;"
 			const items = await mariaDB.query<Product.Coupang[]>(query, [
 				itemsPerPage,
 				offset,
@@ -22,9 +22,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 			res.status(200).json(items)
 		} else {
 			const query =
-				"SELECT * FROM coupangItem_memory WHERE category = ? ORDER BY id LIMIT ? OFFSET ?;"
+				"SELECT * FROM coupangItem WHERE category = ? ORDER BY id LIMIT ? OFFSET ?;"
 			const countQuery =
-				"SELECT COUNT(*) as total FROM coupangItem_memory WHERE category = ?;"
+				"SELECT COUNT(*) as total FROM coupangItem WHERE category = ?;"
 			const [countResult] = await mariaDB.query<any>(countQuery, [category])
 			const totalItems = Math.ceil(countResult.total / itemsPerPage)
 			const items = await mariaDB.query<Product.Coupang[]>(query, [
