@@ -20,7 +20,6 @@ export default function Home() {
           <h3 className='text-2xl sm:text-3xl font-bold my-5'>쿠팡 반품딜</h3>
           <Link href={'/coupang'}>더보기</Link>
         </div>
-        <CoupangLists isload={isLoading} data={data} />
       </div>
     </LayOut>
   )
