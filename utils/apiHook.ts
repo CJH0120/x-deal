@@ -30,9 +30,10 @@ export const qs = (obj: { [key: string]: any }) => {
 export const useCoupangCategory = <Data = Product.Coupang[], Error = any>(
 	category: string,
 	page: number,
+	order: string,
 	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
 ) => {
-	const url = `/api/v1/product/coupang?category=${category}&page=${page}` // URL 생성
+	const url = `/api/v1/product/coupang${qs({ category, page, order })}` // URL 생성
 	const { data, error, mutate, isLoading } = useSWR<Data, Error>(
 		url,
 		fetcher,

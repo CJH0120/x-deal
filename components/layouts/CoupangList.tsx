@@ -15,17 +15,20 @@ interface ListProps {
 const CoupangList = () => {
     const Categories = ["전체", "가전", "핸드폰", "인테리어", "식품", "주방용품", "생활용품", "문구완구"]
     const [category, setCategory] = useState<React.Key>("전체")
+    const [order, setOrder] = useState<React.Key>("")
     const [page, setPage] = useState<number>(1)
-    const { data, mutate, isLoading } = useCoupangCategory(category as string, page)
+    const { data, mutate, isLoading } = useCoupangCategory(category as string, page, order as string)
     const { data: maxpage } = useCoupangCategoryCount(category as string)
     const handleTabSelectionChange = (key: React.Key) => {
         setCategory(key);
     };
-
+    const handleTabOrder = (key: React.Key) => {
+        setOrder(key);
+    };
     const handelChange = (page: number) => {
         setPage(page)
     }
-    useEffect(() => { setPage(1) }, [category])
+    useEffect(() => { setPage(1); }, [category, order])
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -35,21 +38,23 @@ const CoupangList = () => {
     }, [page])
     return (
         <section className="my-10" >
-
-            <Tabs variant="solid" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
-
+            <Tabs variant="solid" className="flex" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
                 {Categories.map(v => <Tab key={v} title={v} />)}
             </Tabs>
-
+            <Tabs variant="light" color="primary" className="flex my-5" aria-label="Tabs variants" onSelectionChange={handleTabOrder} >
+                <Tab key={""} title="기본순" />
+                <Tab key={"ASC"} title="가격 낮은순" />
+                <Tab key={"DESC"} title="가격 높은순" />
+            </Tabs>
             <>
-                <div className="h-full min-h-[500px] grid gap-4 grid-cols-2 sm:grid-cols-4 my-5">
+                <div className="h-full min-h-[250px] sm:min-h-[500px] grid gap-4 grid-cols-2 sm:grid-cols-4 ">
                     {data?.map((v, idx) => <CoupangCard key={idx} card={v} />)}
                     {isLoading && new Array(16).fill([]).map((_, idx) => <LoadCard key={idx} />)}
                 </div>
             </>
 
 
-            {!!maxpage && <div className="flex justify-end sm:w-full"> < Pagination className="overflow-auto" onChange={handelChange} total={maxpage as number} initialPage={1} /></div>}
+            {!!maxpage && <div className="flex justify-center sm:justify-end sm:w-full mt-5"> < Pagination className="overflow-auto" onChange={handelChange} total={maxpage as number} initialPage={1} /></div>}
 
 
         </section>
