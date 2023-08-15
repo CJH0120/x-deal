@@ -8,9 +8,8 @@ export interface CardItemProps {
 }
 
 
-const CoupangCard = ({ card, isload = false }: CardItemProps) => {
+const CoupangCard = ({ card, isload }: CardItemProps) => {
     const { category, image, name, originPrice, percent, price, productUrl, status } = card
-
 
     return (
         <Link target="_blank" href={productUrl} >

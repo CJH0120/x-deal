@@ -1,4 +1,4 @@
-import { fetcher } from "./fetcher"
+import { fetcher } from "../fetcher"
 
 const category = async (category: string) => {
 	fetcher(`/api/v1/product/coupang`, {})

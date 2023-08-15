@@ -1,14 +1,12 @@
 import { useRouter } from "next/router";
 import LayOut from "../../components/layouts/layout";
-import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, Pagination, PaginationItem, Tab, Tabs } from "@nextui-org/react";
-import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextApiResponse, NextPageContext } from "next";
+import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, } from "@nextui-org/react";
+import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import Link from "next/link";
 import ItemList from "../../components/layouts/ItemList";
 import { CommerceData, commerceStore } from "../../utils/props";
-import { useEffect, useMemo, useState } from "react";
-import { CardItemProps, cardPorps } from "../../components/Card";
-import CoupangLists from "../../components/layouts/CoupangList";
-import { useCoupangCategory } from "../../utils/apiHook";
+import { cardPorps } from "../../components/Card";
+import CoupangList from "../../components/layouts/CoupangList";
 interface CommerceProps {
     meta: CommerceData
 }
@@ -93,43 +91,7 @@ export default Commerce
 
 //가전0 /핸드폰1 인테리어6 /식품7   /주방용품8 /생활용품10/문구완구11
 
-const categories = ["전체", "가전", "핸드폰", "인테리어", "식품", "주방용품", "생활용품", "문구완구"]
 
-const CoupangList = () => {
-    const [page, setPage] = useState<number>(1)
-    const [category, setCategory] = useState<React.Key>("전체")
-    const { data, mutate, isLoading } = useCoupangCategory(category as string, page)
-    const [datas, setData] = useState<Product.Coupang[]>([])
-    const [isorder, setIsOrder] = useState<React.Key>(0)
-    useEffect(() => {
-        setPage(1)
-    }, [category])
-
-    useEffect(() => {
-        setData(sortData(data?.items ?? [], isorder))
-    }, [isorder, data])
-    return (
-        <div className="relative mt-5">
-            <div className="flex justify-between items-center w-full grow flex-col sm:flex-row gap-4 sm:gap-0 mb-5 sm:mb-0">
-                <Tabs aria-label="Options" className="w-full " onSelectionChange={setCategory}>
-                    {categories.map(v =>
-                        <Tab key={v} title={v}  >
-                        </Tab>
-                    )}
-                </Tabs>
-                <div className="w-full sm:my-6 flex justify-start sm:justify-end items-center  ">
-                    <Tabs color="primary" aria-label="Tabs colors" className="flex" onSelectionChange={setIsOrder} >
-                        <Tab key={2} title="이름순" />
-                        <Tab key={0} title="가격 낮은순" />
-                        <Tab key={1} title="가격 높은순" />
-                    </Tabs>
-                </div>
-            </div>
-            <CoupangLists isload={isLoading} data={datas} />
-            {!!data?.items.length && <Pagination className="mt-5" onChange={(page) => setPage(page)} total={data.totalItems} initialPage={page} size={"lg"} />}
-        </div >
-    )
-}
 
 
 const OtherList = () => {
@@ -141,17 +103,6 @@ const OtherList = () => {
     )
 }
 
-function sortData(data: Product.Coupang[], order: string | number): Product.Coupang[] {
-    if (order === 0 || order === "0") {
-        return [...data].sort((a, b) => convertPrice(a.price) - convertPrice(b.price));
-    } else if (order === 1 || order === "1") {
-        return [...data].sort((a, b) => convertPrice(b.price) - convertPrice(a.price));
-    } else if (order === 2 || order === "2") {
-        return [...data].sort((a, b) => a.name.localeCompare(b.name));
-    } else {
-        return data; // 예외 처리: 유효하지 않은 order 값일 경우 정렬하지 않고 원본 데이터 반환
-    }
-}
 function convertPrice(price: string): number {
     return parseFloat(price.replace(/[^0-9.-]+/g, ""));
 }

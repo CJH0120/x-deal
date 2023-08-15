@@ -1,7 +1,5 @@
 import useSWR, { KeyedMutator, SWRConfiguration, BareFetcher } from "swr"
 import { fetcher } from "./fetcher"
-import { Param } from "@/pages/api/v1/product/coupang"
-
 type Result<Data, Error> = {
 	data?: Data
 	isLoading: boolean
@@ -29,7 +27,7 @@ export const qs = (obj: { [key: string]: any }) => {
 
 //쿠팡
 
-export const useCoupangCategory = <Data = Param, Error = any>(
+export const useCoupangCategory = <Data = Product.Coupang[], Error = any>(
 	category: string,
 	page: number,
 	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
@@ -41,6 +39,18 @@ export const useCoupangCategory = <Data = Param, Error = any>(
 		fetcherConfig
 	)
 	return { data, error, mutate, isLoading } // 데이터와 에러를 반환
+}
+
+export const useCoupangCategoryCount = <Data = number, Error = any>(
+	category: string,
+	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
+) => {
+	const { data } = useSWR<Data, Error>(
+		`/api/v1/product/coupang/count/${qs({ category })}`,
+		fetcher,
+		fetcherConfig
+	)
+	return { data }
 }
 
 export const useProduct = <Data = Product.Coupang[], Error = any>(
