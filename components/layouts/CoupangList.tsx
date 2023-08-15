@@ -62,7 +62,7 @@ const CoupangList = () => {
             </>
 
 
-            {!!maxpage && <div className="flex justify-center sm:justify-end sm:w-full mt-5"> < Pagination className="overflow-auto" onChange={handelChange} total={maxpage as number} initialPage={1} /></div>}
+            {!!maxpage && <div className="flex justify-center sm:justify-end sm:w-full mt-5"> < Pagination className="overflow-auto" onChange={handelChange} total={maxpage as number} initialPage={page} /></div>}
 
 
         </section>

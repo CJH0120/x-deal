@@ -36,7 +36,7 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
             <Head>
                 <title>{meta?.title ?? `최저가 상품 추천앱, 엑스딜::X-DEAL`}</title>
                 <meta name="description" content={meta?.description ?? `저렴한 가격의 제품을 추천하는 쇼핑몰. 다양한 제품 카테고리에서 가장 저렴한 옵션을 찾아보세요.`} />
-                <meta name="keywords" content={meta?.keywords ?? `엑스딜,쇼핑몰 추천, 저렴한 상품, 가격 비교, 할인 상품, 비용 절약, 쇼핑 가이드`} />
+                <meta name="keywords" content={meta?.keywords ?? `베스트100,베스트셀러,경매,할인쿠폰,베스트셀러,공동구매,컴퓨터/핸드폰,에어컨/TV/디카,MP3/게임,패션/명품/브랜드,여성의류/속옷,남성의류/정장/빅사이즈,분유/기저귀/식품/생리대/임부복,유아동/장난감,쌀/과일/한우/생선,건강식품/음료,화장품/자동차,스포츠/다이어트,골프/등산/스키/낚시,운동화,네비게이션,리빙/침구/인테리어,애완/성인/공구,꽃배달,도서/여행/항공권,만화`} />
                 <meta name="copyright" content="Copyright © 2023 by X-Deal" />
                 <meta name="robots" content="index, follow" />
                 <meta name="language" content="한국어" />
