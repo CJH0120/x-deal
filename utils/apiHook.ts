@@ -46,7 +46,7 @@ export const useCoupangCategoryCount = <Data = number, Error = any>(
 	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
 ) => {
 	const { data } = useSWR<Data, Error>(
-		`/api/v1/product/coupang/count/${qs({ category })}`,
+		`/api/v1/product/coupang/count${qs({ category })}`,
 		fetcher,
 		fetcherConfig
 	)

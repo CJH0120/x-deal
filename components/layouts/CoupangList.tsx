@@ -8,7 +8,7 @@ import { Tabs, Tab } from "@nextui-org/tabs";
 
 
 interface ListProps {
-    item: Product.Coupang[]
+    ismain: boolean
 }
 
 
@@ -18,8 +18,6 @@ const CoupangList = () => {
     const [page, setPage] = useState<number>(1)
     const { data, mutate, isLoading } = useCoupangCategory(category as string, page)
     const { data: maxpage } = useCoupangCategoryCount(category as string)
-    const [test, setTest] = useState<React.Key>("전체")
-
     const handleTabSelectionChange = (key: React.Key) => {
         setCategory(key);
     };
@@ -36,13 +34,20 @@ const CoupangList = () => {
     }, [page])
     return (
         <section className="my-10" >
+
             <Tabs variant="solid" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
+
                 {Categories.map(v => <Tab key={v} title={v} />)}
             </Tabs>
-            <div className="h-full min-h-[500px] grid gap-4 grid-cols-2 sm:grid-cols-4 my-5">
-                {data?.map((v, idx) => <CoupangCard key={idx} card={v} />)}
-                {isLoading && new Array(16).fill([]).map((_, idx) => <LoadCard key={idx} />)}
-            </div>
+
+            <>
+                <div className="h-full min-h-[500px] grid gap-4 grid-cols-2 sm:grid-cols-4 my-5">
+                    {data?.map((v, idx) => <CoupangCard key={idx} card={v} />)}
+                    {isLoading && new Array(16).fill([]).map((_, idx) => <LoadCard key={idx} />)}
+                </div>
+            </>
+
+
             {!!maxpage && <div className="flex justify-end w-full"> < Pagination className="" onChange={handelChange} total={maxpage as number} initialPage={1} /></div>}
 
 
