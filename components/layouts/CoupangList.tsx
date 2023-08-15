@@ -25,6 +25,7 @@ const CoupangList = () => {
     const handelChange = (page: number) => {
         setPage(page)
     }
+    useEffect(() => { setPage(1) }, [category])
     useEffect(() => {
         window.scrollTo({
             top: 0,
