@@ -4,6 +4,7 @@ import { Button, Card, CardBody, CardFooter, Chip, Image, Link, Pagination, Skel
 
 
 import { Tabs, Tab } from "@nextui-org/tabs";
+import { Cabin_Sketch } from "next/font/google";
 
 
 
@@ -36,6 +37,7 @@ const CoupangList = () => {
             behavior: 'auto'
         });
     }, [page])
+    console.log(isLoading)
     return (
         <section className="my-10" >
             <Tabs variant="solid" className="flex" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
@@ -47,10 +49,16 @@ const CoupangList = () => {
                 <Tab key={"DESC"} title="가격 높은순" />
             </Tabs>
             <>
-                <div className="h-full min-h-[250px] sm:min-h-[500px] grid gap-4 grid-cols-2 sm:grid-cols-4 ">
-                    {data?.map((v, idx) => <CoupangCard key={idx} card={v} />)}
-                    {isLoading && new Array(16).fill([]).map((_, idx) => <LoadCard key={idx} />)}
-                </div>
+                {!data?.length && !isLoading ? <div className="flex gap-4 flex-col justify-center items-center h-[300px]">
+                    <p className="text-2xl font-bold">준비된 상품이 없습니다</p>
+                    <p className="text-xl font-bold">추후에 이용해주세요</p>
+
+                </div> :
+                    <div className="h-full min-h-[250px] sm:min-h-[500px] grid gap-4 grid-cols-2 sm:grid-cols-4 ">
+                        {data?.map((v, idx) => <CoupangCard key={idx} card={v} />)}
+                        {isLoading && new Array(16).fill([]).map((_, idx) => <LoadCard key={idx} />)}
+                    </div>
+                }
             </>
 
 
@@ -89,21 +97,22 @@ const CoupangCard = ({ card }: CardList) => {
                         src={image}
                         alt={name}
                     />
+
                 </CardBody>
+
                 <CardFooter className="text-small justify-between">
                     <h3 className='truncate ... font-bold '>{name}</h3>
                 </CardFooter>
 
-                <div className='p-3 flex flex-col gap-2'>
-                    <div className='flex justify-between items-center'>
-                        <Chip color="danger" className='flex ' size="sm" variant='flat' >-{percent}</Chip>
-                        <p className='font-semibold 	 text-sm lg:text-xl	'>{price}</p>
+                <div className='px-3 py-2 flex flex-col gap-2'>
+                    <div className='flex justify-start items-center'>
+                        <p className="font-semibold text-sm lg:text-xl mr-1 	" style={{ color: "#0369a1" }}>{percent}</p>
+                        <p className='font-bold text-sm lg:text-xl	'>{price}</p>
                     </div>
-                    <div className='flex justify-between itmes-center'>
-                        <Chip size="md" color='primary' variant='flat'>
-                            쿠팡
-                        </Chip>
-                        <Button size='sm' variant='solid'  >{status}</Button>
+                    <div className='flex flex-col justify-start itmes-center gap-2'>
+                        <Chip size='sm' variant='dot' radius="md" color="primary" className="mr-2" >쿠팡</Chip>
+                        <Chip size='sm' variant='dot' radius="md" color="danger" className="mr-2" >{status}</Chip>
+                        {/* <Button size='sm' variant='flat' color="default"  >{status}</Button> */}
                     </div>
                 </div>
             </Card>
