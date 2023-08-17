@@ -48,18 +48,18 @@ const CardList = ({ storeName }: CardListProps) => {
     }, [page])
     return (
         <section className="my-10" >
-            {!isLoading &&
-                <>
-                    <Tabs variant="solid" className="flex" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
-                        {categories.map(v => <Tab key={v} title={v} />)}
-                    </Tabs>
-                    <Tabs variant="light" color="primary" className="flex my-5" aria-label="Tabs variants" onSelectionChange={handleTabOrder} >
-                        <Tab key={""} title="기본순" />
-                        <Tab key={"ASC"} title="가격 낮은순" />
-                        <Tab key={"DESC"} title="가격 높은순" />
-                    </Tabs>
-                </>
-            }
+
+            <>
+                <Tabs variant="solid" className="flex" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
+                    {categories.map(v => <Tab key={v} title={v} />)}
+                </Tabs>
+                <Tabs variant="light" color="primary" className="flex my-5" aria-label="Tabs variants" onSelectionChange={handleTabOrder} >
+                    <Tab key={""} title="기본순" />
+                    <Tab key={"ASC"} title="가격 낮은순" />
+                    <Tab key={"DESC"} title="가격 높은순" />
+                </Tabs>
+            </>
+
             <>
                 {!data?.length && !isLoading ? <div className="flex gap-4 flex-col justify-center items-center h-[300px]">
                     <p className="text-2xl font-bold">준비된 상품이 없습니다</p>
