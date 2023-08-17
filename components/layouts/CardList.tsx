@@ -22,13 +22,11 @@ const CardList = ({ storeName }: CardListProps) => {
         }
     }, [storeName])
     const { data: count } = useProducCategoryCount(name, category as string)
-    const { data: categoryList } = useProducCategory(name)
+    const { data: categoryList, isLoading: isCategoryLoding } = useProducCategory(name)
     const { data, isLoading } = useProductData(name, category as string, page, order as string)
     useEffect(() => {
         setCategories(prevList => [...prevList, ...categoryList ?? []])
     }, [categoryList])
-    useEffect(() => { console.log(count) }, [count])
-
     const handleTabSelectionChange = (key: React.Key) => {
         setCategory(key);
     };
@@ -49,16 +47,19 @@ const CardList = ({ storeName }: CardListProps) => {
     return (
         <section className="my-10" >
 
-            <>
-                <Tabs variant="solid" className="flex" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
-                    {categories.map(v => <Tab key={v} title={v} />)}
-                </Tabs>
-                <Tabs variant="light" color="primary" className="flex my-5" aria-label="Tabs variants" onSelectionChange={handleTabOrder} >
-                    <Tab key={""} title="기본순" />
-                    <Tab key={"ASC"} title="가격 낮은순" />
-                    <Tab key={"DESC"} title="가격 높은순" />
-                </Tabs>
-            </>
+            {
+                categories.length > 1 &&
+                <>
+                    <Tabs variant="solid" className="flex" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
+                        {categories.map(v => <Tab key={v} title={v} />)}
+                    </Tabs>
+                    <Tabs variant="light" color="primary" className="flex my-5" aria-label="Tabs variants" onSelectionChange={handleTabOrder} >
+                        <Tab key={""} title="기본순" />
+                        <Tab key={"ASC"} title="가격 낮은순" />
+                        <Tab key={"DESC"} title="가격 높은순" />
+                    </Tabs>
+                </>
+            }
 
             <>
                 {!data?.length && !isLoading ? <div className="flex gap-4 flex-col justify-center items-center h-[300px]">
