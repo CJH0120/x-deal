@@ -5,6 +5,7 @@ import { Button, Card, CardBody, CardFooter, Chip, Image, Link, Pagination, Skel
 
 import { Tabs, Tab } from "@nextui-org/tabs";
 import { Cabin_Sketch } from "next/font/google";
+import { LoadCard } from "./LoadCard";
 
 
 
@@ -37,7 +38,6 @@ const CoupangList = () => {
             behavior: 'auto'
         });
     }, [page])
-    console.log(isLoading)
     return (
         <section className="my-10" >
             <Tabs variant="solid" className="flex" aria-label="Tabs variants" onSelectionChange={handleTabSelectionChange}>
@@ -121,23 +121,3 @@ const CoupangCard = ({ card }: CardList) => {
 }
 
 
-const LoadCard = () => {
-    return (
-        <Card className=" flex flex-col grow w-full h-full space-y-5 " radius="lg">
-            <Skeleton className="w-full h-[155px] sm:w-full sm:h-[212px] rounded-lg">
-                <div className="h-24  rounded-lg bg-default-300"></div>
-            </Skeleton>
-            <div className="space-y-3 p-3">
-                <Skeleton className="w-3/5 rounded-lg">
-                    <div className="h-3 w-3/5 rounded-lg bg-default-200"></div>
-                </Skeleton>
-                <Skeleton className="w-4/5 rounded-lg">
-                    <div className="h-3 w-4/5 rounded-lg bg-default-200"></div>
-                </Skeleton>
-                <Skeleton className="w-2/5 rounded-lg">
-                    <div className="h-3 w-2/5 rounded-lg bg-default-300"></div>
-                </Skeleton>
-            </div>
-        </Card>
-    )
-}

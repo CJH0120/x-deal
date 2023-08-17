@@ -7,6 +7,7 @@ import ItemList from "../../components/layouts/ItemList";
 import { CommerceData, commerceStore } from "../../utils/props";
 import { cardPorps } from "../../components/Card";
 import CoupangList from "../../components/layouts/CoupangList";
+import CardList from "../../components/layouts/CardList";
 interface CommerceProps {
     meta: CommerceData
 }
@@ -36,7 +37,7 @@ const Commerce = ({ meta }: CommerceProps) => {
                     {commerce !== "coupang" && <p className="text-gray-800	text-xs	sm:text-sm mt-2 sm:hidden">쿠팡이외</p>}
                 </Link>
                 {commerce === "coupang" && <CoupangList />}
-                {commerce !== "coupang" && <OtherList />}
+                {commerce !== "coupang" && <CardList storeName={commerce as string} />}
             </LayOut >
         </>
     )
@@ -53,8 +54,8 @@ const Commerce = ({ meta }: CommerceProps) => {
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const commercePaths = ["coupang", "auction", "11st", "gmarket", "gsmall", "himart", "lotte", "wemakeprice"];
-
+    const commercePaths = ["coupang", "wemakeprice"];
+    //"auction", "11st", "gmarket", "gsmall", "himart", "lotte",
     const paths = commercePaths.map(commerce => ({
         params: { commerce },
     }));
@@ -71,7 +72,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
         const meta = commerceStore.find(v => v.key === metaKey);
         return {
             props: {
-                meta: meta
+                meta: meta ?? null
             },
             revalidate: 60,
         };
@@ -91,18 +92,3 @@ export default Commerce
 
 //가전0 /핸드폰1 인테리어6 /식품7   /주방용품8 /생활용품10/문구완구11
 
-
-
-
-const OtherList = () => {
-    const data: cardPorps[] = []
-    return (
-        <div>
-            <ItemList data={data} />
-        </div>
-    )
-}
-
-function convertPrice(price: string): number {
-    return parseFloat(price.replace(/[^0-9.-]+/g, ""));
-}

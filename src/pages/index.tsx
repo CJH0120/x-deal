@@ -91,49 +91,49 @@ export const List: siteProps[] = [
     link: "https://link.coupang.com/a/6qRXH",
     pageLink: "/coupang"
   },
-  {
-    title: "11번가",
-    img: "/logo/11.webp",
-    link: "https://bitl.bz/UNlyEZ",
-    pageLink: "/11st"
+  // {
+  //   title: "11번가",
+  //   img: "/logo/11.webp",
+  //   link: "https://bitl.bz/UNlyEZ",
+  //   pageLink: "/11st"
 
-  },
-  {
-    title: "옥션",
-    img: "/logo/autcion.webp",
-    link: "https://bitl.bz/HsHOw6",
-    pageLink: "/auction"
-  },
-  {
-    title: "지마켓",
-    img: "/logo/gMarket.webp",
-    link: "https://bitl.bz/XfmPia",
-    pageLink: "/gmarket"
+  // },
+  // {
+  //   title: "옥션",
+  //   img: "/logo/autcion.webp",
+  //   link: "https://bitl.bz/HsHOw6",
+  //   pageLink: "/auction"
+  // },
+  // {
+  //   title: "지마켓",
+  //   img: "/logo/gMarket.webp",
+  //   link: "https://bitl.bz/XfmPia",
+  //   pageLink: "/gmarket"
 
-  },
-  {
-    title: "지에스몰",
-    img: "/logo/gsMall.webp",
-    link: "https://bitl.bz/Wb8EmX",
-    pageLink: "/gsmall"
+  // },
+  // {
+  //   title: "지에스몰",
+  //   img: "/logo/gsMall.webp",
+  //   link: "https://bitl.bz/Wb8EmX",
+  //   pageLink: "/gsmall"
 
-  },
+  // },
   {
     title: "위메프",
     img: "/logo/we.webp",
     link: "https://bitl.bz/f53jjo",
     pageLink: "/wemakeprice"
   },
-  {
-    title: "하이마트",
-    img: "/logo/hiMart.webp",
-    link: "https://bitl.bz/cBSLxW",
-    pageLink: "/himart"
-  },
-  {
-    title: "롯데몰",
-    img: "/logo/lotte.webp",
-    link: "https://bitl.bz/GsWQR3",
-    pageLink: "lotte"
-  },
+  // {
+  //   title: "하이마트",
+  //   img: "/logo/hiMart.webp",
+  //   link: "https://bitl.bz/cBSLxW",
+  //   pageLink: "/himart"
+  // },
+  // {
+  //   title: "롯데몰",
+  //   img: "/logo/lotte.webp",
+  //   link: "https://bitl.bz/GsWQR3",
+  //   pageLink: "lotte"
+  // },
 ];

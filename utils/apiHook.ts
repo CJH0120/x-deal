@@ -65,3 +65,44 @@ export const useProduct = <Data = Product.Coupang[], Error = any>(
 	)
 	return { data, error, mutate, isLoading } // 데이터와 에러를 반환
 }
+
+//Product
+
+export const useProductData = <Data = Product.Card[], Error = any>(
+	storeName: string,
+	category: string,
+	page: number,
+	order: string,
+	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
+) => {
+	const url = `/api/v1/product${qs({ storeName, category, page, order })}`
+	const { data, error, mutate, isLoading } = useSWR<Data, Error>(
+		url,
+		fetcher,
+		fetcherConfig
+	)
+	return { data, error, mutate, isLoading } // 데이터와 에러를 반환
+}
+
+export const useProducCategory = <Data = string[], Error = any>(
+	storeName: string,
+	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
+) => {
+	const url = `/api/v1/product/category${qs({ storeName })}`
+	const { data, error, mutate, isLoading } = useSWR<Data, Error>(
+		url,
+		fetcher,
+		fetcherConfig
+	)
+	return { data, error, mutate, isLoading } // 데이터와 에러를 반환
+}
+
+export const useProducCategoryCount = <Data = string[], Error = any>(
+	storeName: string,
+	category: string,
+	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
+) => {
+	const url = `/api/v1/product/count${qs({ storeName, category })}`
+	const { data } = useSWR<Data, Error>(url, fetcher, fetcherConfig)
+	return { data }
+}
