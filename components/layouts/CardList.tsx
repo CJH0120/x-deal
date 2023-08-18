@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useProducCategory, useProducCategoryCount, useProductData } from "../../utils/apiHook"
-import { CardBody, CardFooter, Chip, Image, Link, Tab, Tabs, Card, Pagination } from "@nextui-org/react"
+import { CardBody, CardFooter, Chip, Image, Link, Tab, Tabs, Card, Pagination, Skeleton } from "@nextui-org/react"
 import { LoadCard } from "./LoadCard"
 
 
@@ -110,17 +110,18 @@ const CardItem = ({ NewLink, productCategory, productImage, productName, product
     return (
         <Link target="_blank" href={NewLink} >
             <Card shadow="sm" className=' max-w-[212px] lg:max-w-[232px] lg:w-[232px]  '   >
-                <CardBody className="overflow-visible p-0  ">
+                <CardBody className="overflow-visible p-0 relative  max-w-[212px] z-50	   lg:max-w-[232px] lg:w-[232px]">
                     <Image
                         loading='lazy'
                         shadow="sm"
                         draggable={false}
                         radius="lg"
-                        className="w-full max-w-[212px]  lg:max-w-[232px] lg:w-[232px]    object-cover"
+                        className="w-full  object-cover"
                         src={productImage}
                         alt={productName}
-                    />
+                        placeholder="blur"
 
+                    />
                 </CardBody>
 
                 <CardFooter className="text-small justify-between">
@@ -130,11 +131,11 @@ const CardItem = ({ NewLink, productCategory, productImage, productName, product
                 <div className='px-3 py-2 flex flex-col gap-2'>
                     <div className='flex justify-start items-center'>
                         <p className="font-semibold text-sm lg:text-xl mr-1 	" style={{ color: "#0369a1" }}>{productPercent}</p>
-                        <p className='font-bold text-sm lg:text-xl	'>{productPrice}</p>
+                        <p className='font-bold text-sm lg:text-xl	'>{Number(productPrice).toLocaleString()}원</p>
                     </div>
                     <div className='flex flex-col justify-start itmes-center gap-2'>
                         <Chip size='sm' variant='dot' radius="md" color="primary" className="mr-2" >{store}</Chip>
-                        <Chip size='sm' variant='dot' radius="md" color="danger" className="mr-2" >{store === "위메프" && "모바일 전용"}</Chip>
+                        <Chip size='sm' variant='dot' radius="md" color="danger" className="mr-2" >{store === "위메프" && "App 전용"}</Chip>
                         {/* <Button size='sm' variant='flat' color="default"  >{status}</Button> */}
                     </div>
                 </div>

@@ -55,7 +55,7 @@ const Commerce = ({ meta }: CommerceProps) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const commercePaths = ["coupang", "wemakeprice"];
-    //"auction", "11st", "gmarket", "gsmall", "himart", "lotte",
+    //"auction", "11st", "gmarket", "gsmall", "himart", "lotte",`
     const paths = commercePaths.map(commerce => ({
         params: { commerce },
     }));
