@@ -16,6 +16,14 @@ export const commerceStore: CommerceData[] = [
 		pageLink: "/coupang",
 		ogImg: "/og/xcoupang.png",
 	},
+	{
+		key: "hmall",
+		displayName: "현대몰",
+		logoPath: "/logo/hmall.jpg",
+		link: "https://bitl.bz/2qbbr6",
+		pageLink: "/hmall",
+		ogImg: "",
+	},
 	// {
 	// 	key: "auction",
 	// 	displayName: "옥션",

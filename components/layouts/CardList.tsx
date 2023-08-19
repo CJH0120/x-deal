@@ -18,7 +18,10 @@ const CardList = ({ storeName }: CardListProps) => {
     const [categories, setCategories] = useState<string[]>(["전체"])
     useEffect(() => {
         switch (storeName) {
-            case "wemakeprice": setName("위메프")
+            case "wemakeprice": return setName("위메프")
+            case "hmall": return setName("현대몰")
+
+
         }
     }, [storeName])
     const { data: count } = useProducCategoryCount(name, category as string)
@@ -94,16 +97,13 @@ export default CardList
 const CardItem = ({ NewLink, productCategory, productImage, productName, productOriginPrice, productPercent, productPrice, productStatus, productUrl, storeName }: Product.Card) => {
 
     const [store, setStore] = useState<string>('')
-    switch (storeName) {
-        case "wemakeprice": "위메프"
-
-        default: storeName
-    }
 
     useEffect(() => {
         switch (storeName) {
             case "wemakeprice": setStore("위메프")
-
+                break;
+            case "hmall": setStore("현대몰")
+                break;
             default: storeName
         }
     }, [storeName])
@@ -135,7 +135,7 @@ const CardItem = ({ NewLink, productCategory, productImage, productName, product
                     </div>
                     <div className='flex flex-col justify-start itmes-center gap-2'>
                         <Chip size='sm' variant='dot' radius="md" color="primary" className="mr-2" >{store}</Chip>
-                        <Chip size='sm' variant='dot' radius="md" color="danger" className="mr-2" >{store === "위메프" && "App 전용"}</Chip>
+                        <Chip size='sm' variant='dot' radius="md" color="danger" className="mr-2" >{store === "위메프" ? "App 전용" : "주간 베스트"}</Chip>
                         {/* <Button size='sm' variant='flat' color="default"  >{status}</Button> */}
                     </div>
                 </div>

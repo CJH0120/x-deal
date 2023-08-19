@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	if (req.method === "GET") {
 		const { storeName, category, page, order } = req.query
 		if (!storeName || !category || !page) return res.status(400).json([])
-		const itemsPerPage = 16
+		const itemsPerPage = 28
 		const pageValue = parseInt(page as string)
 		const offset = (pageValue - 1) * itemsPerPage // Removed unnecessary 'as any'
 

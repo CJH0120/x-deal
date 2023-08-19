@@ -54,7 +54,7 @@ const Commerce = ({ meta }: CommerceProps) => {
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const commercePaths = ["coupang", "wemakeprice"];
+    const commercePaths = ["coupang", "wemakeprice", "hmall"];
     //"auction", "11st", "gmarket", "gsmall", "himart", "lotte",`
     const paths = commercePaths.map(commerce => ({
         params: { commerce },
@@ -67,7 +67,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
     const { params } = context;
     const commerce = params?.commerce;
 
-    if (["coupang", "auction", "11st", "gmarket", "gsmall", "himart", "lotte", "wemakeprice"].includes(commerce as string)) {
+    if (["coupang", "wemakeprice", "hmall"].includes(commerce as string)) {
         const metaKey = commerce as keyof typeof commerceStore;
         const meta = commerceStore.find(v => v.key === metaKey);
         return {
