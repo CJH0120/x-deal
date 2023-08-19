@@ -110,13 +110,13 @@ const CardItem = ({ NewLink, productCategory, productImage, productName, product
     return (
         <Link target="_blank" href={NewLink} >
             <Card shadow="sm" className=' max-w-[212px] lg:max-w-[232px] lg:w-[232px]  '   >
-                <CardBody className="overflow-visible p-0 relative  max-w-[212px] z-50	   lg:max-w-[232px] lg:w-[232px]">
+                <CardBody className="overflow-visible p-0 relative  max-w-[212px] z-50	lg:max-w-[232px] lg:w-[232px]">
                     <Image
                         loading='lazy'
                         shadow="sm"
                         draggable={false}
                         radius="lg"
-                        className="w-full  object-cover"
+                        className="w-full  object-cover  h-full max-h-[212px] min-h-[212px]  lg:min-h-[232px] lg:max-h-[232px] "
                         src={productImage}
                         alt={productName}
                         placeholder="blur"
