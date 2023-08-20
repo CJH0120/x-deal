@@ -7,7 +7,7 @@ const mariaDB = MariaDB.getInstance()
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	if (req.method === "GET") {
 		const { page, category, order } = req.query
-		const itemsPerPage = 16
+		const itemsPerPage = 28
 		const offset = ((page as any) - 1) * itemsPerPage
 
 		if (!category || category === "전체") {

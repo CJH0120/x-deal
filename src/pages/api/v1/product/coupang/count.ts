@@ -10,13 +10,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 		if (!category || category === "전체") {
 			const query = "SELECT COUNT(*) as total FROM coupangItem"
 			const result = await mariaDB.query(query)
-			const total = Math.ceil(result[0].total / 16)
+			const total = Math.ceil(result[0].total / 28)
 			res.status(200).json(total)
 		} else {
 			const countQuery =
 				"SELECT COUNT(*) as total FROM coupangItem WHERE category = ?;"
 			const query = await mariaDB.query<any>(countQuery, [category])
-			const total = Math.ceil(query[0].total / 16)
+			const total = Math.ceil(query[0].total / 28)
 			res.status(200).json(total)
 		}
 	}

@@ -26,7 +26,9 @@ const Commerce = ({ meta }: CommerceProps) => {
                                 <div className="flex flex-col justify-between  ml-4 text-gray-800 ">
                                     <h2 className="text-sm font-bold text-sm sm:text-lg	">{displayName}의 새로운 상품들로 더욱 특별한 쇼핑을 즐겨보세요!</h2>
                                     {commerce === "coupang" && <p className="text-gray-800	text-xs sm:text-sm  hidden sm:block">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
-                                    {commerce !== "coupang" && <p className="text-gray-800	text-xs sm:text-sm  hidden sm:block">쿠팡이외</p>}
+                                    {commerce !== "coupang" && <div className="text-gray-800 w-[400px]	text-xs sm:text-sm  hidden sm:block">
+                                        <Image src="https://d2nkkkpf88oxbk.cloudfront.net/static/v3.adpick/images/adpicksponser_03.png" />
+                                    </div>}
 
                                 </div>
                             </div>
@@ -34,7 +36,9 @@ const Commerce = ({ meta }: CommerceProps) => {
                         </div>
                     </div>
                     {commerce === "coupang" && <p className="text-gray-800 flex	text-xs sm:text-sm mt-5  sm:hidden">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
-                    {commerce !== "coupang" && <p className="text-gray-800	text-xs	sm:text-sm mt-2 sm:hidden">쿠팡이외</p>}
+                    {commerce !== "coupang" && <div className="text-gray-800	text-xs	sm:text-sm mt-2 sm:hidden">
+                        <Image src="https://d2nkkkpf88oxbk.cloudfront.net/static/v3.adpick/images/adpicksponser_03.png" />
+                    </div>}
                 </Link>
                 {commerce === "coupang" && <CoupangList />}
                 {commerce !== "coupang" && <CardList storeName={commerce as string} />}
