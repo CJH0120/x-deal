@@ -96,6 +96,9 @@ const CoupangCard = ({ card }: CardList) => {
                         className="w-full max-w-[212px]  lg:max-w-[232px] lg:w-[232px]    object-cover"
                         src={image}
                         alt={name}
+                        disableSkeleton={true}
+                        placeholder="blur"
+
                     />
 
                 </CardBody>
