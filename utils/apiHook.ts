@@ -1,5 +1,6 @@
 import useSWR, { KeyedMutator, SWRConfiguration, BareFetcher } from "swr"
 import { fetcher } from "./fetcher"
+import { Product } from "../interface"
 type Result<Data, Error> = {
 	data?: Data
 	isLoading: boolean
@@ -103,6 +104,14 @@ export const useProducCategoryCount = <Data = string[], Error = any>(
 	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
 ) => {
 	const url = `/api/v1/product/count${qs({ storeName, category })}`
+	const { data } = useSWR<Data, Error>(url, fetcher, fetcherConfig)
+	return { data }
+}
+
+export const useProductMain = <Data = Product.Card[], Error = any>(
+	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
+) => {
+	const url = `/api/v1/product/items${qs({})}`
 	const { data } = useSWR<Data, Error>(url, fetcher, fetcherConfig)
 	return { data }
 }

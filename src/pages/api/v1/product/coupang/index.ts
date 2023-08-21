@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next"
 import MariaDB from "../../../../../../lib/mariadb"
 
 import { withCatch } from "../../../../../../utils/withCatch"
+import { Product } from "../../../../../../interface"
 const mariaDB = MariaDB.getInstance()
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {

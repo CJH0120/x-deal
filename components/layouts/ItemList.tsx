@@ -1,7 +1,7 @@
 import { Button, Chip, Image, Link, Tab, Tabs } from "@nextui-org/react"
 import CardItem, { CardItemProps, cardPorps } from "../Card"
 import { useEffect } from "react"
-
+import { Product } from "../../interface"
 
 interface ItemListProps {
     data: Product.Coupang[] | cardPorps[]

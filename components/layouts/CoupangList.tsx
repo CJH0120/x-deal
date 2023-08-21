@@ -6,6 +6,7 @@ import { Button, Card, CardBody, CardFooter, Chip, Image, Link, Pagination, Skel
 import { Tabs, Tab } from "@nextui-org/tabs";
 import { Cabin_Sketch } from "next/font/google";
 import { LoadCard } from "./LoadCard";
+import { Product } from "../../interface";
 
 
 

@@ -1,4 +1,4 @@
-namespace Product {
+export namespace Product {
 	export interface Coupang {
 		name: string
 		image: string
@@ -22,4 +22,11 @@ namespace Product {
 		productUrl: string
 		NewLink: string
 	}
+}
+export interface MainListProps {
+	title: string
+	desc: string
+	link: string
+	items: Product.Card[]
+	storeName: string
 }

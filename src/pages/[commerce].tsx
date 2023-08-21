@@ -58,12 +58,11 @@ const Commerce = ({ meta }: CommerceProps) => {
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const commercePaths = ["coupang", "wemakeprice", "hmall"];
+    const commercePaths = ["coupang", "wemakeprice", "hmall", "eleven"];
     //"auction", "11st", "gmarket", "gsmall", "himart", "lotte",`
     const paths = commercePaths.map(commerce => ({
         params: { commerce },
     }));
-
     return { paths, fallback: false }; // fallback: false는 경로에 없는 경우 404 반환
 };
 
@@ -71,7 +70,7 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
     const { params } = context;
     const commerce = params?.commerce;
 
-    if (["coupang", "wemakeprice", "hmall"].includes(commerce as string)) {
+    if (["coupang", "wemakeprice", "hmall", "eleven"].includes(commerce as string)) {
         const metaKey = commerce as keyof typeof commerceStore;
         const meta = commerceStore.find(v => v.key === metaKey);
         return {

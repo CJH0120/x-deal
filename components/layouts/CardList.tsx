@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useProducCategory, useProducCategoryCount, useProductData } from "../../utils/apiHook"
 import { CardBody, CardFooter, Chip, Image, Link, Tab, Tabs, Card, Pagination, Skeleton } from "@nextui-org/react"
 import { LoadCard } from "./LoadCard"
+import { Product } from "../../interface"
 
 
 
@@ -20,6 +21,8 @@ const CardList = ({ storeName }: CardListProps) => {
         switch (storeName) {
             case "wemakeprice": return setName("위메프")
             case "hmall": return setName("현대몰")
+            case "eleven": return setName("11번가")
+
 
 
         }
@@ -94,36 +97,34 @@ export default CardList
 
 
 
-const CardItem = ({ NewLink, productCategory, productImage, productName, productOriginPrice, productPercent, productPrice, productStatus, productUrl, storeName }: Product.Card) => {
+export const CardItem = ({ NewLink, productCategory, productImage, productName, productOriginPrice, productPercent, productPrice, productStatus, productUrl, storeName }: Product.Card) => {
 
     const [store, setStore] = useState<string>('')
-
     useEffect(() => {
         switch (storeName) {
             case "wemakeprice": setStore("위메프")
                 break;
             case "hmall": setStore("현대몰")
                 break;
-            default: storeName
+            case "eleven": setStore("11번가")
+                break;
+            default: setStore(storeName)
         }
     }, [storeName])
     return (
         <Link target="_blank" href={NewLink} >
-            <Card shadow="sm" className=' max-w-[212px] lg:max-w-[232px] lg:w-[232px]  '   >
-                <CardBody className="overflow-visible p-0 relative   max-w-[212px] z-50  lg:max-w-[232px] lg:w-[232px]">
+            <Card shadow="sm" className=' max-w-[212px] lg:max-w-[232px] lg:w-[232px]  z-10 '   >
+                <CardBody className="overflow-visible p-0 relative min-w-full min-h-full  max-w-[212px] z-50  lg:max-w-[232px] lg:w-[232px]">
                     <Image
                         loading='lazy'
                         shadow="sm"
                         draggable={false}
                         radius="lg"
-                        className="w-full h-[155.5px] lg:h-[232px]  object-cover "
+                        className="w-full h-[155.5px] lg:h-[232px]  object-cover flex-1	 grow	  "
                         src={productImage}
                         alt={productName}
-                        placeholder="blur"
-
                     />
                 </CardBody>
-
                 <CardFooter className="text-small justify-between">
                     <h3 className='truncate ... font-bold '>{productName}</h3>
                 </CardFooter>
@@ -135,7 +136,7 @@ const CardItem = ({ NewLink, productCategory, productImage, productName, product
                     </div>
                     <div className='flex flex-col justify-start itmes-center gap-2'>
                         <Chip size='sm' variant='dot' radius="md" color="primary" className="mr-2" >{store}</Chip>
-                        <Chip size='sm' variant='dot' radius="md" color="danger" className="mr-2" >{store === "위메프" ? "App 전용" : "주간 베스트"}</Chip>
+                        <Chip size='sm' variant='dot' radius="md" color="danger" className="mr-2" >{store === "위메프" ? "App 전용" : store === "현대몰" ? "주간 베스트" : "오늘의 핫딜"}</Chip>
                         {/* <Button size='sm' variant='flat' color="default"  >{status}</Button> */}
                     </div>
                 </div>

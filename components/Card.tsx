@@ -1,4 +1,5 @@
 import { Card, CardFooter, Image, Button, CardHeader, CardBody, Link, Chip, Skeleton } from '@nextui-org/react'
+import { Product } from "../interface"
 
 
 

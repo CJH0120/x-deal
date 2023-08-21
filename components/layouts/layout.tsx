@@ -84,6 +84,15 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
             <div className="py-4  m-auto px-6 " style={{ width: "100%", maxWidth: "1024px", margin: "0 auto" }}>
                 {children}
             </div>
+
+            <footer className="footer p-10 bg-neutral text-neutral-content justify-center mt-10 sm:20 ">
+                <div className="max-w-[1024px] w-full">
+                    <div>
+                        <span className="footer-title">Services</span>
+                        <a className="link link-hover ml-3">@CJH</a>
+                    </div>
+                </div>
+            </footer>
         </>
     )
 }

@@ -32,14 +32,14 @@ export const commerceStore: CommerceData[] = [
 	// 	pageLink: "/auction",
 	// 	ogImg: "/og/xauction.png",
 	// },
-	// {
-	// 	key: "11st",
-	// 	displayName: "11번가",
-	// 	logoPath: "/logo/11.webp",
-	// 	link: "https://bitl.bz/UNlyEZ",
-	// 	pageLink: "/11st",
-	// 	ogImg: "/og/x11st.png",
-	// },
+	{
+		key: "eleven",
+		displayName: "11번가",
+		logoPath: "/logo/11.webp",
+		link: "https://bitl.bz/UNlyEZ",
+		pageLink: "/eleven",
+		ogImg: "/og/x11st.png",
+	},
 	// {
 	// 	key: "gmarket",
 	// 	displayName: "지마켓",
