@@ -112,6 +112,6 @@ export const useProductMain = <Data = Product.Card[], Error = any>(
 	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
 ) => {
 	const url = `/api/v1/product/items${qs({})}`
-	const { data } = useSWR<Data, Error>(url, fetcher, fetcherConfig)
-	return { data }
+	const { data, isLoading } = useSWR<Data, Error>(url, fetcher, fetcherConfig)
+	return { data, isLoading }
 }

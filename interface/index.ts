@@ -29,4 +29,5 @@ export interface MainListProps {
 	link: string
 	items: Product.Card[]
 	storeName: string
+	isLoading?: boolean
 }

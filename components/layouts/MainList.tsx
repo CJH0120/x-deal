@@ -6,12 +6,12 @@ import { LoadCard } from "./LoadCard"
 
 
 
-const MainList = ({ desc, items, link, title, isLoading }: MainListProps) => {
+const MainList = ({ desc, items, link, title, isLoading = false }: MainListProps) => {
     return (
         <div className="flex flex-col justify-between items-center w-full mt-10">
             <div className="flex justify-between items-center w-full ">
                 <div className="flex-col flex justify-center items-start w-full my-3 sm:my-5 sm:flex-row sm:justify-start sm:items-center ">
-                    <h3 className="text-xl my-1 sm:my-0 sm:text-2xl font-bold mr-10">{title}</h3>
+                    <h3 className="text-xl my-1 sm:my-0 sm:text-2xl font-bold rmr-10">{title}</h3>
                     <p className="text-sm flex items-end font-bold" style={{ color: "#b91c1c" }}>{desc}</p>
                 </div>
                 <div className="hidden sm:flex justify-end w-[100px]"><Link href={link} className="text-sm " >더보기</Link></div>
