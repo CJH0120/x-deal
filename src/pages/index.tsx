@@ -14,12 +14,12 @@ import MainList from '../../components/layouts/MainList'
 
 
 export default function Home() {
-  const { data } = useProductMain()
+  const { data, isLoading } = useProductMain()
   const [props, setProps] = useState<MainListProps[]>([
     // { storeName: "쿠팡", title: "쿠팡을 싸게 !", desc: "이 포스팅은 쿠팡 파트너스 활동 일환으로, 이에 따른 일정액의 수수료를 제공받습니다", link: "/coupang", items: [] },
     { storeName: "11번가", title: "No.1 종합쇼핑몰 11번가", desc: "쇼킹딜/아마존딜을 만나봐요!", items: [], link: "/eleven" },
     { storeName: "현대몰", title: "현대홈쇼팅 인터넷몰", desc: "현대몰에서 인기있는 세일 상품을 모았다 !", link: "/hmall", items: [] },
-    { storeName: "위메프", title: "No.1 특가커머스! 특가대표 위메프", desc: "특가에 특가를 만나봐요!", link: "/we", items: [] },
+    { storeName: "위메프", title: "No.1 특가커머스! 특가대표 위메프", desc: "특가에 특가를 만나봐요!", link: "/wemakeprice", items: [] },
 
   ])
 
@@ -36,7 +36,7 @@ export default function Home() {
     <LayOut>
       <SiteGather />
       <div className='mt-10'>
-        {props.map((v, idx) => <MainList {...v} key={idx} />)}
+        {props.map((v, idx) => <MainList {...v} key={idx} isLoading={isLoading} />)}
       </div>
     </LayOut>
   )

@@ -2,11 +2,11 @@ import { Button, Image, Link } from "@nextui-org/react"
 import { MainListProps } from "../../interface"
 import { Product } from "../../interface"
 import { CardItem } from "./CardList"
+import { LoadCard } from "./LoadCard"
 
 
 
-const MainList = ({ desc, items, link, title }: MainListProps) => {
-    console.log(items)
+const MainList = ({ desc, items, link, title, isLoading }: MainListProps) => {
     return (
         <div className="flex flex-col justify-between items-center w-full mt-10">
             <div className="flex justify-between items-center w-full ">
@@ -21,8 +21,10 @@ const MainList = ({ desc, items, link, title }: MainListProps) => {
             </div>
             <div className="h-full min-h-[250px]  grid gap-4 grid-cols-2 sm:grid-cols-4 ">
                 {items.map(v => <CardItem {...v} key={v.NewLink} />)}
+                {isLoading && new Array(4).fill([]).map((_, idx) => <LoadCard key={items[idx].productImage} />)}
+
             </div>
-            <Link className="w-full sm:hidden flex" href={link} ><Button className="w-full mt-5" color="primary"> 더보러가기</Button></Link>
+            <Link className="w-full sm:hidden flex mt-5" href={link} ><Button className="w-full " color="primary">특가 더보기 </Button></Link>
         </div>
 
 

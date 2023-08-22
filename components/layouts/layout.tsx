@@ -88,8 +88,7 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
             <footer className="footer p-10 bg-neutral text-neutral-content justify-center mt-10 sm:20 ">
                 <div className="max-w-[1024px] w-full">
                     <div>
-                        <span className="footer-title">Services</span>
-                        <a className="link link-hover ml-3">@CJH</a>
+                        <span className="footer-title">핫딜은 엑스딜</span>
                     </div>
                 </div>
             </footer>

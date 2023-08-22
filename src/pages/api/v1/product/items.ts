@@ -6,14 +6,14 @@ const mariaDB = MariaDB.getInstance()
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 	if (req.method === "GET") {
-		const query = `WITH RankedProducts AS (
+		const query = `SELECT *
+        FROM (
             SELECT *,
-                   ROW_NUMBER() OVER(PARTITION BY storeName ORDER BY CAST(REPLACE(productPercent, '%', '') AS DECIMAL(5,2)) DESC) AS RowNum
+                   ROW_NUMBER() OVER (PARTITION BY storeName ORDER BY CAST(productPrice AS DECIMAL(10,2))) AS AscRowNum,
+                   ROW_NUMBER() OVER (PARTITION BY storeName ORDER BY CAST(productPrice AS DECIMAL(10,2)) DESC) AS DescRowNum
             FROM ProductItem
-        )
-        SELECT *
-        FROM RankedProducts
-        WHERE RowNum <= 4;`
+        ) AS RankedProducts
+        WHERE AscRowNum <= 2 OR DescRowNum <= 2;`
 		const result = await mariaDB.query(query)
 		res.status(200).json(result)
 	}
