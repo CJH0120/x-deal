@@ -22,7 +22,7 @@ const MainList = ({ desc, items, link, title, isLoading = false }: MainListProps
                 {title !== "쿠팡" ? <Image height={30} width={500} src="https://d2nkkkpf88oxbk.cloudfront.net/static/v3.adpick/images/adpicksponser_03.png" /> :
                     <p className="text-small" style={{ color: "rgb(161, 161, 170)" }}>이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다</p>}
             </div>
-            <div className="h-full min-h-[250px]  grid gap-4 grid-cols-2 sm:grid-cols-4 ">
+            <div className="h-full min-h-[250px]  max-h-[625px]  grid gap-4 grid-cols-2 sm:grid-cols-4 ">
                 {items.map(v => <CardItem {...v} key={v.NewLink} />)}
                 {isLoading && new Array(4).fill([]).map((_, idx) => <LoadCard key={items[idx]?.productImage ?? idx} />)}
 
