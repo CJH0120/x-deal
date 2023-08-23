@@ -3,16 +3,18 @@ import { MainListProps } from "../../interface"
 import { Product } from "../../interface"
 import { CardItem } from "./CardList"
 import { LoadCard } from "./LoadCard"
+import { useRouter } from "next/router"
 
 
 
 const MainList = ({ desc, items, link, title, isLoading = false }: MainListProps) => {
+    const router = useRouter()
     return (
         <div className="flex flex-col justify-between items-center w-full mt-10">
             <div className="flex justify-between items-center w-full ">
                 <div className="flex-col flex justify-center items-start w-full my-3 sm:my-5 sm:flex-row sm:justify-start sm:items-center ">
                     <h3 className="text-xl my-1 sm:my-0 sm:text-2xl font-bold rmr-10">{title}</h3>
-                    <p className="text-sm flex items-end justify-start font-bold ml-5" style={{ color: "#b91c1c" }}>{desc}</p>
+                    <p className="text-sm flex items-end justify-start font-bold ml-0 sm:ml-5" style={{ color: "#b91c1c" }}>{desc}</p>
                 </div>
                 <div className="hidden sm:flex justify-end w-[100px]"><Link href={link} className="text-sm " >더보기</Link></div>
             </div>
@@ -25,7 +27,8 @@ const MainList = ({ desc, items, link, title, isLoading = false }: MainListProps
                 {isLoading && new Array(4).fill([]).map((_, idx) => <LoadCard key={items[idx]?.productImage ?? idx} />)}
 
             </div>
-            <Link className="w-full sm:hidden flex mt-5" href={link} ><Button className="w-full " color="primary">특가 더보기 </Button></Link>
+
+            <Button onClick={() => { router.push(link) }} className="w-full sm:hidden flex mt-5 " color="primary">특가 더보기 </Button>
         </div>
 
 

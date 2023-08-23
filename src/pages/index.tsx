@@ -12,7 +12,7 @@ import MainList from '../../components/layouts/MainList'
 export default function Home() {
   const { data, isLoading } = useProductMain()
   const [props, setProps] = useState<MainListProps[]>([
-    { storeName: "쿠팡", title: "쿠팡", desc: "쿠팡에서 즐겨봐요", link: "/coupang", items: [] },
+    { storeName: "쿠팡", title: "쿠팡", desc: "쿠팡을 더 싸게 !", link: "/coupang", items: [] },
     { storeName: "11번가", title: "No.1 종합쇼핑몰 11번가", desc: "쇼킹딜/아마존딜을 만나봐요!", items: [], link: "/eleven" },
     { storeName: "현대몰", title: "현대홈쇼핑 인터넷몰", desc: "현대몰에서 인기있는 세일 상품을 모았다 !", link: "/hmall", items: [] },
     { storeName: "위메프", title: "No.1 특가커머스! 특가대표 위메프", desc: "특가에 특가를 만나봐요!", link: "/wemakeprice", items: [] },
