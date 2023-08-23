@@ -26,47 +26,6 @@ export const qs = (obj: { [key: string]: any }) => {
 	return ""
 }
 
-//쿠팡
-
-export const useCoupangCategory = <Data = Product.Coupang[], Error = any>(
-	category: string,
-	page: number,
-	order: string,
-	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
-) => {
-	const url = `/api/v1/product/coupang${qs({ category, page, order })}` // URL 생성
-	const { data, error, mutate, isLoading } = useSWR<Data, Error>(
-		url,
-		fetcher,
-		fetcherConfig
-	)
-	return { data, error, mutate, isLoading } // 데이터와 에러를 반환
-}
-
-export const useCoupangCategoryCount = <Data = number, Error = any>(
-	category: string,
-	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
-) => {
-	const { data } = useSWR<Data, Error>(
-		`/api/v1/product/coupang/count${qs({ category })}`,
-		fetcher,
-		fetcherConfig
-	)
-	return { data }
-}
-
-export const useProduct = <Data = Product.Coupang[], Error = any>(
-	fetcherConfig?: SWRConfiguration<Data, Error, BareFetcher<Data>>
-) => {
-	const url = `/api/v1/product`
-	const { data, error, mutate, isLoading } = useSWR<Data, Error>(
-		url,
-		fetcher,
-		fetcherConfig
-	)
-	return { data, error, mutate, isLoading } // 데이터와 에러를 반환
-}
-
 //Product
 
 export const useProductData = <Data = Product.Card[], Error = any>(
