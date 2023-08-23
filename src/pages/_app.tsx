@@ -21,17 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
       router.events.off('hashChangeComplete', handleRouteChange);
     };
   }, [router.events]);
-  useEffect(() => {
-    const naverPublic = document.getElementById("naver_public");
-    const script2 = document.createElement('script');
-    script2.text = `
-     if (!wcs_add) var wcs_add = {};
-     wcs_add["wa"] = "197dc11c6790ed0";
-     if (!_nasa) var _nasa = {};
-     if (window.wcs) { wcs.inflow();         
-     wcs_do(_nasa); } var _nasa = {}; // 초기화 구문
-     `;
-  }, [router.events])
 
   return (
     <>

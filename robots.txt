@@ -7,3 +7,4 @@ Host: https://www.xdeal.site/
 
 # Sitemaps
 Sitemap: https://www.xdeal.site/sitemap.xml
+x-robots-tag: noindex

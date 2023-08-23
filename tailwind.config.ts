@@ -22,7 +22,6 @@ const config: Config = {
 	},
 	darkMode: "class",
 	plugins: [
-		require("daisyui"),
 		nextui({
 			colors: {
 				white: "#FFFFFF",
@@ -56,6 +55,7 @@ const config: Config = {
 				},
 			},
 		}),
+		require("daisyui"),
 	],
 }
 export default config

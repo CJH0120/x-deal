@@ -27,7 +27,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				itemsPerPage,
 				offset,
 			])
-			res.status(200).json(items)
+			const returnData = items.map((v) => ({
+				...v,
+				productPrice: v.productPrice.replace(/,/g, ""),
+			}))
+			res.status(200).json(returnData)
 		} else {
 			let query =
 				"SELECT productCategory, productImage, productName, productPercent, " +
@@ -36,13 +40,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 				"WHERE StoreName = ? AND productCategory = ? AND NewLink IS NOT NULL " // Added "productCategory"
 			query += buildOrderByClause(order as string)
 			query += " LIMIT ? OFFSET ?;"
-			const items = await mariaDB.query<Product.Coupang[]>(query, [
+			const items = await mariaDB.query<Product.Card[]>(query, [
 				storeName,
 				category,
 				itemsPerPage,
 				offset,
 			])
-			res.status(200).json(items)
+			const returnData = items.map((v) => ({
+				...v,
+				productPrice: v.productPrice.replace(/,/g, ""),
+			}))
+			res.status(200).json(returnData)
 		}
 	}
 }

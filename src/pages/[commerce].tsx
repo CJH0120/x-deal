@@ -3,10 +3,7 @@ import LayOut from "../../components/layouts/layout";
 import { Avatar, Button, Card, CardBody, CardFooter, CardHeader, Chip, Image, } from "@nextui-org/react";
 import { GetServerSideProps, GetServerSidePropsContext, GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import Link from "next/link";
-import ItemList from "../../components/layouts/ItemList";
 import { CommerceData, commerceStore } from "../../utils/props";
-import { cardPorps } from "../../components/Card";
-import CoupangList from "../../components/layouts/CoupangList";
 import CardList from "../../components/layouts/CardList";
 interface CommerceProps {
     meta: CommerceData
@@ -40,8 +37,8 @@ const Commerce = ({ meta }: CommerceProps) => {
                         <Image src="https://d2nkkkpf88oxbk.cloudfront.net/static/v3.adpick/images/adpicksponser_03.png" />
                     </div>}
                 </Link>
-                {commerce === "coupang" && <CoupangList />}
-                {commerce !== "coupang" && <CardList storeName={commerce as string} />}
+                {/* {commerce === "coupang" && <CoupangList />} */}
+                <CardList storeName={commerce as string} />
             </LayOut >
         </>
     )

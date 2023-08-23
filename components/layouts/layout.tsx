@@ -35,7 +35,7 @@ const LayOut = ({ children, meta, loading = false }: LayOutProps) => {
         <>
             <Head>
                 <title>{meta?.title ?? `최저가 상품 핫딜 추천앱, 엑스딜::X-DEAL`}</title>
-                <meta name="description" content={meta?.description ?? `유명 커머스 핫딜을 추천하는 쇼핑몰.`} />
+                <meta name="description" content={meta?.description ?? `유명 커머스 핫딜을 모아놓은 핫딜모음 쇼핑몰에서 저렴한 가격에 제품을 구매하세요. 다양한 카테고리와 할인 혜택을 누려보세요.`} />
                 <meta name="keywords" content={meta?.keywords ?? `최저가 추천, 최저가 쇼핑몰, 최저가 가구, 추천 앱, 상품 추천, 핫딜 모음, 특가 모음, 특가 추천`} />
                 <meta name="copyright" content="Copyright © 2023 by X-Deal" />
                 <meta name="robots" content="index, follow" />

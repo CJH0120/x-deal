@@ -1,15 +1,4 @@
 export namespace Product {
-	export interface Coupang {
-		name: string
-		image: string
-		percent: string
-		originPrice: string
-		price: string
-		status: string
-		category: string
-		productUrl: string
-	}
-
 	export interface Card {
 		storeName: string
 		productName: string
