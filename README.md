@@ -1,2 +1,12 @@
-![www xdeal site_](https://github.com/CJH0120/x-deal/assets/97073471/b5cd80a2-7fc3-4126-bd6f-a95db023a8c1)
-![www xdeal site_ (1)](https://github.com/CJH0120/x-deal/assets/97073471/80299d1e-62cf-4b85-9df9-75352570e6a9)
+
+### [Nextjs TailWindCSS](https://www.mmew.site/)
+<ul>기술스택 
+<li>NextJs 13 App</li>
+ <li>mariaDB</li>
+ <li>AWS </li>
+</ul>
+
+
+![www xdeal site_](https://github.com/CJH0120/x-deal/assets/97073471/484e8984-c712-4379-9dfa-3c0a641a35e0)
+
+![www xdeal site_ (1)](https://github.com/CJH0120/x-deal/assets/97073471/9d82cd54-6147-452a-9162-aa1ab97b50ee)
