@@ -1,5 +1,6 @@
 
-### [Nextjs TailWindCSS](https://www.mmew.site/)
+### [Nextjs TailWindCSS](https://www.xdeal.site/)
+
 <ul>기술스택 
 <li>NextJs 13 App</li>
  <li>mariaDB</li>
